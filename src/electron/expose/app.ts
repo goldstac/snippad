@@ -1,23 +1,20 @@
-import { getSettings, setSettings } from "../app/settings";
-import { getTheme, setTheme } from "../app/theme";
-import { getToken, removeToken, setToken } from "../store/token";
-import { getPlatform } from "../utils/getPlatform";
+import { ipcRenderer } from "electron";
 
-export const app = {
+export const appObj = {
   helpers: {
-    getPlatform,
+    getPlatform: () => ipcRenderer.invoke("app:getPlatform"),
   },
   settings: {
-    getSettings,
-    setSettings,
+    get: () => ipcRenderer.invoke("settings:get"),
+    set: (settings: unknown) => ipcRenderer.invoke("settings:set", settings),
   },
   theme: {
-    getTheme,
-    setTheme,
+    get: () => ipcRenderer.invoke("theme:get"),
+    set: (theme: string) => ipcRenderer.invoke("theme:set", theme),
   },
   store: {
-    getToken,
-    setToken,
-    removeToken,
+    getToken: () => ipcRenderer.invoke("store:getToken"),
+    setToken: (token: string) => ipcRenderer.invoke("store:setToken", token),
+    removeToken: () => ipcRenderer.invoke("store:removeToken"),
   },
 };
