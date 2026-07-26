@@ -1,17 +1,33 @@
+"use strict";
+
+import LoginScreen from "./components/auth/LoginScreen";
+import Loading from "./components/ui/overlays/Loading";
+import { useAuth } from "./hooks/useAuth";
+import { AuthProvider } from "./providers/AuthProvider";
+import { GistProvider } from "./providers/GistProvider";
+import ThemeProvider from "./providers/ThemeProvider";
+
+function MainApp() {
+  return <div className="h-full bg-[--background-primary]"></div>;
+}
+
+function AppInner() {
+  const { status } = useAuth();
+  if (status === "validating" || status === "idle") return <Loading />;
+  if (status === "unauthenticated") return <LoginScreen />;
+  return (
+    <GistProvider>
+      <MainApp />
+    </GistProvider>
+  );
+}
+
 export default function App() {
   return (
-    <>
-      <button
-        className="border border-t-yellow-400"
-        onClick={async () => {
-          console.log(await window.app.helpers.getPlatform());
-          console.log(await window.app.settings.getSettings());
-          console.log(await window.app.theme.getTheme());
-          // window.app.settings.setSettings({ te: "st" });
-        }}
-      >
-        Cwick
-      </button>
-    </>
+    <ThemeProvider>
+      <AuthProvider>
+        <AppInner />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
