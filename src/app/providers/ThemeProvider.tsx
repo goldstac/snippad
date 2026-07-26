@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
-import { Theme } from "../../electron/types/theme";
+import { Theme } from "../../shared/types/theme";
 import { ThemeContext } from "../context/ThemeContext";
 import { applyTheme } from "../lib/theme";
 

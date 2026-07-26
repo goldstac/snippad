@@ -1,4 +1,4 @@
-import { type Theme } from "../../electron/types/theme";
+import { type Theme } from "../../shared/types/theme";
 
 export function applyTheme(themeObj: Theme | null): void {
   if (!themeObj) return;

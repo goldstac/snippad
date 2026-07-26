@@ -1,5 +1,5 @@
 import { createContext, Dispatch, useContext } from "react";
-import { Theme } from "../../electron/types/theme";
+import { Theme } from "../../shared/types/theme";
 
 type ThemeContextValue = {
   theme: Theme | null;
