@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { sidebarItems } from "../../content/sidebarItems";
 import { useGists } from "../../hooks/useGists";
 import { ViewTypes } from "../../types/app";
@@ -15,7 +15,10 @@ export default function Sidebar({
   setActiveView,
   isSidebarOpen = true,
 }: SidebarProps) {
-  const { gists, starredIds } = useGists();
+  const { gists, starredIds, refresh } = useGists();
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
 
   const counts: Record<string, number> = {
     all: gists.length,
@@ -29,7 +32,7 @@ export default function Sidebar({
       className={`h-full ${isSidebarOpen ? "w-80" : "w-14"} border bg-[--background-secondary] border-[--border-color] flex flex-col p-2 transition-all`}
     >
       <div
-        className={`border-b border-[--border-color] h-[46px] p-1 mb-3 flex align-center justify-center gap-3`}
+        className={`border-b border-[--border-color] h-[46px] p-1 mb-3 flex items-center justify-center gap-3`}
       >
         <div className="h-7 w-7 overflow-hidden">
           <img src="../../../assets/icon.svg" />

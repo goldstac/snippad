@@ -24,7 +24,7 @@ export default function TokenInput({
 
   return (
     <form onSubmit={submit} className="flex flex-col gap-3">
-      <div className="flex align-center gap-2 rounded-md overflow-hidden justify-center bg-[--background-secondary] p-4">
+      <div className="flex items-center gap-2 rounded-md overflow-hidden justify-center bg-[--background-secondary] p-4">
         <input
           type={show ? "text" : "password"}
           value={token}

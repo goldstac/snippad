@@ -29,6 +29,10 @@ function makeDraftId(): string {
   return `draft-${Date.now()}-${draftCounter}`;
 }
 
+function contentKey(gistId: string, filename: string): string {
+  return `${gistId}:${filename}`;
+}
+
 export function GistProvider({ children }: { children: ReactNode }) {
   const { token, user } = useAuth();
   const [gists, setGists] = useState<Gist[]>([]);
@@ -96,7 +100,7 @@ export function GistProvider({ children }: { children: ReactNode }) {
     async (gist: Gist) => {
       if (!token) return;
       const needsFetch = Object.values(gist.files).some(
-        (f) => f.content === undefined || f.content === "" || f.truncated,
+        (f) => f.content == null || f.content === "" || f.truncated,
       );
       if (!needsFetch) return;
       setContentLoading(true);
@@ -105,7 +109,7 @@ export function GistProvider({ children }: { children: ReactNode }) {
         const newContent: Record<string, string> = {};
         for (const [filename, file] of Object.entries(full.files)) {
           if (file.content !== undefined) {
-            newContent[`${gist.id}:${filename}`] = file.content;
+            newContent[contentKey(gist.id, filename)] = file.content;
           }
         }
         setLoadedContent((prev) => ({ ...prev, ...newContent }));
@@ -137,8 +141,8 @@ export function GistProvider({ children }: { children: ReactNode }) {
     const needFetch = gists.filter((g) =>
       Object.values(g.files).some(
         (f) =>
-          loadedContent[`${g.id}:${f.filename}`] === undefined &&
-          (f.content === undefined || f.content === "" || f.truncated),
+          loadedContent[contentKey(g.id, f.filename)] === undefined &&
+          (f.content == null || f.content === "" || f.truncated),
       ),
     );
     if (needFetch.length === 0) return;
@@ -191,63 +195,6 @@ export function GistProvider({ children }: { children: ReactNode }) {
     setDirty(true);
   };
 
-  const saveGist = useCallback(async () => {
-    if (!token || !selectedGist) return;
-    const isDraft = "isDraft" in selectedGist && selectedGist.isDraft;
-    const files: Record<string, { content: string }> = {};
-    for (const [filename, content] of Object.entries(draftContent)) {
-      files[filename] = { content };
-    }
-    if (isDraft) {
-      const fileEntries = Object.entries(selectedGist.files);
-      if (fileEntries.length === 1) {
-        const [filename] = fileEntries[0];
-        if (!files[filename])
-          files[filename] = { content: draftContent[filename] || "" };
-      }
-      if (Object.keys(files).length === 0) return;
-      try {
-        const created = await apiCreateGist(token, {
-          description: draftDescription,
-          public: selectedGist.public,
-          files,
-        });
-        setGists((prev) => [created, ...prev]);
-        setSelectedGist(created);
-        setDraftContentMap({});
-        setDirty(false);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to create gist");
-      }
-      return;
-    }
-    const updateFiles: UpdateGistInput["files"] = {};
-    for (const [filename, content] of Object.entries(draftContent)) {
-      updateFiles[filename] = { content };
-    }
-    const input: UpdateGistInput = {
-      description:
-        draftDescription !== selectedGist.description
-          ? draftDescription
-          : undefined,
-      files: Object.keys(updateFiles).length > 0 ? updateFiles : undefined,
-    };
-    if (input.description === undefined && input.files === undefined) return;
-    try {
-      const updated = await apiUpdateGist({
-        token,
-        id: selectedGist.id,
-        input,
-      });
-      setGists((prev) => prev.map((g) => (g.id === updated.id ? updated : g)));
-      setSelectedGist(updated);
-      setDraftContentMap({});
-      setDirty(false);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to save gist");
-    }
-  }, [token, selectedGist, draftContent, draftDescription]);
-
   const createGist = useCallback(
     async (input: NewGistInput): Promise<Gist | null> => {
       if (!token) return null;
@@ -263,6 +210,90 @@ export function GistProvider({ children }: { children: ReactNode }) {
     },
     [token],
   );
+
+  // Shared helper for the "patch an existing (non-draft) gist" path, used by
+  // saveGist, addFileToGist, removeFileFromGist, and renameFile. Collapses
+  // what used to be four near-identical try/catch/setGists/setSelectedGist
+  // blocks into one place.
+  const applyRemoteUpdate = useCallback(
+    async (
+      input: UpdateGistInput,
+      errorMessage: string,
+    ): Promise<Gist | null> => {
+      if (!token || !selectedGist || "isDraft" in selectedGist) return null;
+      try {
+        const updated = await apiUpdateGist({
+          token,
+          id: selectedGist.id,
+          input,
+        });
+        setGists((prev) =>
+          prev.map((g) => (g.id === updated.id ? updated : g)),
+        );
+        setSelectedGist(updated);
+        return updated;
+      } catch (err) {
+        setError(err instanceof Error ? err.message : errorMessage);
+        return null;
+      }
+    },
+    [token, selectedGist],
+  );
+
+  const saveGist = useCallback(async () => {
+    if (!token || !selectedGist) return;
+    const isDraft = "isDraft" in selectedGist && selectedGist.isDraft;
+
+    if (isDraft) {
+      // Build the file set from every file currently on the draft, falling
+      // back to that file's own content (not a blank string) for anything
+      // the user never typed into. Previously, an untouched file fell back
+      // to "" and could get submitted as empty content.
+      const files: Record<string, { content: string }> = {};
+      for (const [filename, file] of Object.entries(selectedGist.files)) {
+        const raw = draftContent[filename] ?? file.content ?? "";
+        files[filename] = { content: raw.length > 0 ? raw : "// new file\n" };
+      }
+      if (Object.keys(files).length === 0) return;
+
+      const created = await createGist({
+        description: draftDescription,
+        public: selectedGist.public,
+        files,
+      });
+      if (created) {
+        setDraftContentMap({});
+        setDirty(false);
+      }
+      return;
+    }
+
+    const updateFiles: UpdateGistInput["files"] = {};
+    for (const [filename, content] of Object.entries(draftContent)) {
+      updateFiles[filename] = { content };
+    }
+    const input: UpdateGistInput = {
+      description:
+        draftDescription !== selectedGist.description
+          ? draftDescription
+          : undefined,
+      files: Object.keys(updateFiles).length > 0 ? updateFiles : undefined,
+    };
+    if (input.description === undefined && input.files === undefined) return;
+
+    const updated = await applyRemoteUpdate(input, "Failed to save gist");
+    if (updated) {
+      setDraftContentMap({});
+      setDirty(false);
+    }
+  }, [
+    token,
+    selectedGist,
+    draftContent,
+    draftDescription,
+    createGist,
+    applyRemoteUpdate,
+  ]);
 
   const removeGist = useCallback(
     async (id: string): Promise<boolean> => {
@@ -330,6 +361,7 @@ export function GistProvider({ children }: { children: ReactNode }) {
         return;
       }
       const safeContent = content.length > 0 ? content : "// new file\n";
+
       if ("isDraft" in selectedGist) {
         const newFile: GistFile = {
           filename,
@@ -338,32 +370,20 @@ export function GistProvider({ children }: { children: ReactNode }) {
           size: safeContent.length,
           content: safeContent,
         };
-        const updatedDraft = {
+        setSelectedGist({
           ...selectedGist,
           files: { ...selectedGist.files, [filename]: newFile },
-        };
-        setSelectedGist(updatedDraft);
+        });
         setDraftContentMap((prev) => ({ ...prev, [filename]: safeContent }));
         return;
       }
-      const updateInput: UpdateGistInput = {
-        files: { [filename]: { content: safeContent } },
-      };
-      try {
-        const updated = await apiUpdateGist({
-          token,
-          id: selectedGist.id,
-          input: updateInput,
-        });
-        setGists((prev) =>
-          prev.map((g) => (g.id === updated.id ? updated : g)),
-        );
-        setSelectedGist(updated);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to add file");
-      }
+
+      await applyRemoteUpdate(
+        { files: { [filename]: { content: safeContent } } },
+        "Failed to add file",
+      );
     },
-    [token, selectedGist],
+    [token, selectedGist, applyRemoteUpdate],
   );
 
   const removeFileFromGist = useCallback(
@@ -373,6 +393,7 @@ export function GistProvider({ children }: { children: ReactNode }) {
         setError("A gist must have at least one file.");
         return;
       }
+
       if ("isDraft" in selectedGist) {
         const newFiles = { ...selectedGist.files };
         delete newFiles[filename];
@@ -384,24 +405,13 @@ export function GistProvider({ children }: { children: ReactNode }) {
         });
         return;
       }
-      const updateInput: UpdateGistInput = {
-        files: { [filename]: null },
-      };
-      try {
-        const updated = await apiUpdateGist({
-          token,
-          id: selectedGist.id,
-          input: updateInput,
-        });
-        setGists((prev) =>
-          prev.map((g) => (g.id === updated.id ? updated : g)),
-        );
-        setSelectedGist(updated);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to remove file");
-      }
+
+      await applyRemoteUpdate(
+        { files: { [filename]: null } },
+        "Failed to remove file",
+      );
     },
-    [token, selectedGist],
+    [token, selectedGist, applyRemoteUpdate],
   );
 
   const renameFile = useCallback(
@@ -416,73 +426,47 @@ export function GistProvider({ children }: { children: ReactNode }) {
         setError(`A file named "${newName}" already exists in this gist.`);
         return;
       }
+
       if ("isDraft" in selectedGist) {
         const newFiles: Record<string, GistFile> = {};
         for (const [name, file] of Object.entries(selectedGist.files)) {
-          if (name === oldName) {
-            newFiles[newName] = { ...file, filename: newName };
-          } else {
-            newFiles[name] = file;
-          }
+          newFiles[name === oldName ? newName : name] =
+            name === oldName ? { ...file, filename: newName } : file;
         }
         setSelectedGist({ ...selectedGist, files: newFiles });
         setDraftContentMap((prev) => {
           const next: Record<string, string> = {};
           for (const [name, content] of Object.entries(prev)) {
-            if (name === oldName) next[newName] = content;
-            else next[name] = content;
+            next[name === oldName ? newName : name] = content;
           }
           return next;
         });
         return;
       }
-      const updateInput: UpdateGistInput = {
-        files: { [oldName]: { filename: newName } },
-      };
-      try {
-        const updated = await apiUpdateGist({
-          token,
-          id: selectedGist.id,
-          input: updateInput,
-        });
-        setGists((prev) =>
-          prev.map((g) => (g.id === updated.id ? updated : g)),
-        );
-        setSelectedGist(updated);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to rename file");
-      }
+
+      await applyRemoteUpdate(
+        { files: { [oldName]: { filename: newName } } },
+        "Failed to rename file",
+      );
     },
-    [token, selectedGist],
+    [token, selectedGist, applyRemoteUpdate],
   );
 
+  // GitHub's API has no endpoint to change a gist between public/secret after
+  // creation. The previous implementation re-sent the unchanged description
+  // and quietly did nothing, which looked like it worked but never touched
+  // visibility. Surfacing that honestly instead of faking success.
   const toggleVisibility = useCallback(async () => {
-    if (!token || !selectedGist || "isDraft" in selectedGist) return;
-    try {
-      const updated = await apiUpdateGist({
-        token,
-        id: selectedGist.id,
-        input: {
-          description: selectedGist.description ?? undefined,
-        },
-      });
-      setGists((prev) => prev.map((g) => (g.id === updated.id ? updated : g)));
-      setSelectedGist(updated);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to update gist");
-    }
-  }, [token, selectedGist]);
+    setError(
+      "GitHub doesn't support changing a gist's visibility after creation. Create a new gist with the desired visibility instead.",
+    );
+  }, []);
 
+  // Tags are derived once, from the description, in lib/github.ts's
+  // normalizeGist. This just dedupes/sorts what's already on each gist
+  // instead of re-parsing descriptions a second time here.
   const allTags = useMemo(
-    () =>
-      Array.from(
-        new Set(
-          gists.flatMap((g) => {
-            const descTags = (g.description || "").match(/#(\w+)/g) || [];
-            return descTags.map((t) => t.slice(1));
-          }),
-        ),
-      ).sort(),
+    () => Array.from(new Set(gists.flatMap((g) => g.tags))).sort(),
     [gists],
   );
 
@@ -492,10 +476,7 @@ export function GistProvider({ children }: { children: ReactNode }) {
         if (selectedFilter === "starred" && !starredIds.has(g.id)) return false;
         if (selectedFilter === "public" && !g.public) return false;
         if (selectedFilter === "secret" && g.public) return false;
-        if (selectedTag) {
-          const tags = (g.description || "").match(/#(\w+)/g) || [];
-          if (!tags.map((t) => t.slice(1)).includes(selectedTag)) return false;
-        }
+        if (selectedTag && !g.tags.includes(selectedTag)) return false;
         if (searchQuery.trim()) {
           const q = searchQuery.toLowerCase();
           const inDesc = (g.description || "").toLowerCase().includes(q);

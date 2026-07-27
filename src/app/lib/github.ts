@@ -184,7 +184,7 @@ export async function updateGist({
             .join("; ");
       }
     } catch {
-      // keep raw text
+      // keep raw
     }
     throw new Error(detail || `Failed to update gist (${response.status})`);
   }
@@ -238,9 +238,14 @@ export async function isGistStarred(
   return response.status === 204;
 }
 
+function extractTags(description?: string | null): string[] {
+  const matches = (description || "").match(/#(\w+)/g) || [];
+  return matches.map((t) => t.slice(1));
+}
+
 function normalizeGist(raw: Gist): Gist {
   return {
     ...raw,
-    tags: raw.tags || [],
+    tags: extractTags(raw.description),
   };
 }
