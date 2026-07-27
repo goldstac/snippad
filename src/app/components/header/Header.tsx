@@ -31,7 +31,7 @@ export default function Header({
         <Button
           variant="secondary"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className=""
+          className="border-none"
         >
           <Sidebar />
         </Button>
