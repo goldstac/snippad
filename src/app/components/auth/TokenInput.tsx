@@ -30,7 +30,7 @@ export default function TokenInput({
           value={token}
           onChange={(e) => setToken(e.target.value)}
           placeholder="ghp_..."
-          className="w-72 bg-transparent focus:outline-none"
+          className="w-72 bg-transparent"
           autoFocus
         />
         <button

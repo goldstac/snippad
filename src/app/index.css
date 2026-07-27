@@ -65,3 +65,8 @@ h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+button:focus,
+input:focus {
+  outline: none;
+}

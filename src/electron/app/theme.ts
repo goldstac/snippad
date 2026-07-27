@@ -1,6 +1,6 @@
+import { Theme } from "../../shared/types/theme";
 import { config } from "../constants/config";
 import { defaultTheme } from "../defaults/theme";
-import { Theme } from "../types/theme";
 import { configDir } from "../utils/configDir";
 import { readFile, writeFile } from "../utils/fs";
 

@@ -1,6 +1,6 @@
+import { Settings } from "../../shared/types/settings";
 import { config } from "../constants/config";
 import { defaultSettings } from "../defaults/settings";
-import { Settings } from "../types/settings";
 import { configDir } from "../utils/configDir";
 import { readFile, writeFile } from "../utils/fs";
 

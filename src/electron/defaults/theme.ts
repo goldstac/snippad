@@ -1,9 +1,8 @@
-import pkg from "../../../package.json" with { type: "json" };
-import { Theme } from "../types/theme";
+import { Theme } from "../../shared/types/theme";
 
 export const defaultTheme: Theme = {
   name: "Carbon",
-  description: `Carbon theme for ${pkg.name}`,
+  description: `Carbon theme for PureGist`,
   author: "calebephrem",
   theme: {
     client: {
