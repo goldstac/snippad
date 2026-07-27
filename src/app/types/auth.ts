@@ -1,7 +1,10 @@
 import { GitHubUser } from "./gist";
 
 export type AuthStatus =
-  "idle" | "validating" | "authenticated" | "unauthenticated";
+  | "idle"
+  | "validating"
+  | "authenticated"
+  | "unauthenticated";
 
 export interface AuthContextValue {
   token: string | null;
