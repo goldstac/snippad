@@ -7,7 +7,7 @@ type SidebarItemProps = {
   // changeView: (view: string) => void;
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
   icon: ReactElement;
-  sidebarOpen: boolean;
+  isSidebarOpen: boolean;
 };
 
 export default function SidebarItem({
@@ -17,12 +17,12 @@ export default function SidebarItem({
   // changeView,
   onClick,
   icon,
-  sidebarOpen,
+  isSidebarOpen,
 }: SidebarItemProps) {
   return (
     <button
       onClick={onClick}
-      className={`rounded-md bg-[${active ? "--background-elevated" : "--background-secondary"}] p-3 flex items-center justify-between border border-transparent hover:border-[--border-color] transition-all`}
+      className={`w-full rounded-md bg-[${active ? "--background-elevated" : "--background-secondary"}] p-3 flex items-center justify-between border border-transparent hover:border-[--border-color] transition-all`}
     >
       <div className="flex gap-4">
         <span
@@ -30,12 +30,12 @@ export default function SidebarItem({
         >
           {icon}
         </span>
-        {sidebarOpen && (
+        {isSidebarOpen && (
           <h1 className="whitespace-nowrap text-[0.9rem]">{label}</h1>
         )}
       </div>
 
-      {sidebarOpen && <span className="text-[--text-muted]">{number}</span>}
+      {isSidebarOpen && <span className="text-[--text-muted]">{number}</span>}
     </button>
   );
 }

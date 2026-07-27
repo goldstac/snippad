@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { sidebarItems } from "../../content/sidebarItems";
+import { useAuth } from "../../hooks/useAuth";
 import { useGists } from "../../hooks/useGists";
 import { ViewTypes } from "../../types/app";
-import SidebarItem from "./SidebarItem";
+import SidebarBottom from "./SidebarBottom";
+import SidebarTop from "./SidebarTop";
 
 type SidebarProps = {
   activeView: ViewTypes;
@@ -16,6 +17,7 @@ export default function Sidebar({
   isSidebarOpen = true,
 }: SidebarProps) {
   const { gists, starredIds, refresh } = useGists();
+  const { user } = useAuth();
   useEffect(() => {
     refresh();
   }, [refresh]);
@@ -29,32 +31,18 @@ export default function Sidebar({
 
   return (
     <div
-      className={`h-full ${isSidebarOpen ? "w-80" : "w-14"} border bg-[--background-secondary] border-[--border-color] flex flex-col p-2 transition-all`}
+      className={`${isSidebarOpen ? "w-80" : "w-14"} h-full flex flex-col items-center justify-between border-r bg-[--background-secondary] border-[--border-color] transition-all p-2`}
     >
-      <div
-        className={`border-b border-[--border-color] h-[46px] p-1 mb-3 flex items-center justify-center gap-3`}
-      >
-        <div className="h-7 w-7 overflow-hidden">
-          <img src="../../../assets/icon.svg" />
-        </div>
-        {isSidebarOpen && <h1 className="text-xl">PureGist</h1>}
-      </div>
-      <div className={`flex flex-col ${!isSidebarOpen && "gap-1"}`}>
-        {sidebarItems.map((item, i) => {
-          const Icon = item.icon;
-          return (
-            <SidebarItem
-              key={i}
-              label={sidebarItems[i].label}
-              number={counts[item.id]}
-              active={activeView === item.id}
-              onClick={() => setActiveView(item.id)}
-              icon={<Icon size={18} />}
-              sidebarOpen={isSidebarOpen}
-            />
-          );
-        })}
-      </div>
+      <SidebarTop
+        activeView={activeView}
+        setActiveView={setActiveView}
+        isSidebarOpen={isSidebarOpen}
+        counts={counts}
+      />
+      <SidebarBottom
+        isSidebarOpen={isSidebarOpen}
+        user={user === null ? undefined : user}
+      />
     </div>
   );
 }
