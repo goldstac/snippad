@@ -1,5 +1,5 @@
 import { ChevronRight, FileCode } from "lucide-react";
-import { sidebarItems } from "../../content/sidebarItems";
+import { sidebarItems } from "../../content/sidebarTopItems";
 import { ViewTypes } from "../../types/app";
 
 interface BreadcrumbProps {

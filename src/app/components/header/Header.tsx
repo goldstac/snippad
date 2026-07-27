@@ -16,7 +16,6 @@ export default function Header({
   isSidebarOpen,
   activeView,
 }: HeaderProps) {
-  // const { user } = useAuth();
   const { selectedGist } = useGists();
 
   const gistName = selectedGist

@@ -211,10 +211,6 @@ export function GistProvider({ children }: { children: ReactNode }) {
     [token],
   );
 
-  // Shared helper for the "patch an existing (non-draft) gist" path, used by
-  // saveGist, addFileToGist, removeFileFromGist, and renameFile. Collapses
-  // what used to be four near-identical try/catch/setGists/setSelectedGist
-  // blocks into one place.
   const applyRemoteUpdate = useCallback(
     async (
       input: UpdateGistInput,
@@ -245,10 +241,6 @@ export function GistProvider({ children }: { children: ReactNode }) {
     const isDraft = "isDraft" in selectedGist && selectedGist.isDraft;
 
     if (isDraft) {
-      // Build the file set from every file currently on the draft, falling
-      // back to that file's own content (not a blank string) for anything
-      // the user never typed into. Previously, an untouched file fell back
-      // to "" and could get submitted as empty content.
       const files: Record<string, { content: string }> = {};
       for (const [filename, file] of Object.entries(selectedGist.files)) {
         const raw = draftContent[filename] ?? file.content ?? "";
@@ -452,19 +444,12 @@ export function GistProvider({ children }: { children: ReactNode }) {
     [token, selectedGist, applyRemoteUpdate],
   );
 
-  // GitHub's API has no endpoint to change a gist between public/secret after
-  // creation. The previous implementation re-sent the unchanged description
-  // and quietly did nothing, which looked like it worked but never touched
-  // visibility. Surfacing that honestly instead of faking success.
   const toggleVisibility = useCallback(async () => {
     setError(
       "GitHub doesn't support changing a gist's visibility after creation. Create a new gist with the desired visibility instead.",
     );
   }, []);
 
-  // Tags are derived once, from the description, in lib/github.ts's
-  // normalizeGist. This just dedupes/sorts what's already on each gist
-  // instead of re-parsing descriptions a second time here.
   const allTags = useMemo(
     () => Array.from(new Set(gists.flatMap((g) => g.tags))).sort(),
     [gists],

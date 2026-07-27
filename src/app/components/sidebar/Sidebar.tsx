@@ -31,7 +31,7 @@ export default function Sidebar({
 
   return (
     <div
-      className={`${isSidebarOpen ? "w-80" : "w-14"} h-full flex flex-col items-center justify-between border-r bg-[--background-secondary] border-[--border-color] transition-all p-2`}
+      className={`${isSidebarOpen ? "w-80" : "w-14"} h-full flex flex-col items-start justify-between border-r bg-[--background-secondary] border-[--border-color] transition-all p-${isSidebarOpen ? 2 : 1}`}
     >
       <SidebarTop
         activeView={activeView}
