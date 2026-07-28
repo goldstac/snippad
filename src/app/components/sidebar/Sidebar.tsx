@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useGists } from "../../hooks/useGists";
 import { ViewTypes } from "../../types/app";
@@ -16,11 +16,8 @@ export default function Sidebar({
   setActiveView,
   isSidebarOpen = true,
 }: SidebarProps) {
-  const { gists, starredIds, refresh } = useGists();
+  const { gists, starredIds } = useGists();
   const { user } = useAuth();
-  useEffect(() => {
-    refresh();
-  }, [refresh]);
 
   const counts: Record<string, number> = {
     all: gists.length,

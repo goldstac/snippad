@@ -15,7 +15,7 @@ export function Breadcrumb({ gistName, activeView }: BreadcrumbProps) {
       {gistName && (
         <>
           <ChevronRight size={12} />
-          <span className="text-[--text-secondary] truncate">{gistName}</span>
+          <span className="text-[--text-secondary]">{gistName}</span>
         </>
       )}
     </div>

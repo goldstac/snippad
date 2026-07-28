@@ -26,7 +26,9 @@ export default function Header({
 
   return (
     <div className="w-full flex flex-col">
-      <div className="border-b w-full border-[--border-color] bg-[--background-secondary] h-[55px] p-2 flex items-center justify-between gap-3">
+      <div
+        className={`border-b border-[--border-color] w-full bg-[--background-secondary] h-[${isSidebarOpen ? 54 : 50}px] p-2 flex items-center justify-between gap-3`}
+      >
         <Button
           variant="secondary"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
