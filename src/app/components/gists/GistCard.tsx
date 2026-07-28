@@ -22,16 +22,29 @@ function relativeTime(iso: string): string {
   return `${Math.floor(months / 12)}y ago`;
 }
 
-function titleFromDescription(
-  description: string | null | undefined,
-  fallback: string,
-): string {
-  const title = (description || "")
+function extractTitleAndDescription(description: string | null | undefined): {
+  title: string;
+  description?: string;
+} {
+  const text = (description || "").trim();
+
+  const bracketMatch = text.match(/^\[(.+?)\]\s*(.*)$/);
+  if (bracketMatch) {
+    const title = bracketMatch[1].trim();
+    const rest = bracketMatch[2]
+      .split(" ")
+      .filter((word) => !word.startsWith("#"))
+      .join(" ")
+      .trim();
+    return { title, description: rest || undefined };
+  }
+
+  const title = text
     .split(" ")
     .filter((word) => !word.startsWith("#"))
     .join(" ")
     .trim();
-  return title || fallback;
+  return { title };
 }
 
 export function GistCard({ gist, active, onClick }: GistCardProps) {
@@ -47,12 +60,13 @@ export function GistCard({ gist, active, onClick }: GistCardProps) {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [gist.id]);
 
-  const lang = file?.language;
+  // const lang = file?.language;
 
-  const title = titleFromDescription(
-    gist.description,
-    primaryFile ?? "Untitled",
-  );
+  const title =
+    extractTitleAndDescription(gist.description).title || primaryFile;
+
+  const description =
+    extractTitleAndDescription(gist.description).description || file?.language;
 
   return (
     <button
@@ -73,7 +87,11 @@ export function GistCard({ gist, active, onClick }: GistCardProps) {
         </span>
       </div>
 
-      <div className="text-[--text-secondary]">{lang}</div>
+      <div className="text-[--text-secondary]">
+        {(description || "No description available")?.length > 155
+          ? description?.slice(0, 155) + "..."
+          : description}
+      </div>
 
       {(gist.tags.length > 0 || isStarred) && (
         <div className="flex items-center gap-2 mt-1">

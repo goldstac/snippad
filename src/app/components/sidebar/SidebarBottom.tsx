@@ -45,15 +45,15 @@ export default function SidebarBottom({
           })}
         </div>
         <div
-          className={`flex gap-3 ${isSidebarOpen && "bg-[--background-tertiary]"} p-${isSidebarOpen ? 3 : 2} rounded-md`}
+          className={`flex gap-3 ${isSidebarOpen && "bg-[--background-tertiary]"} py-3 px-${isSidebarOpen ? 3 : 2} rounded-md flex-shrink-0`}
         >
           <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
             <img src={user.avatar_url} />
           </div>
           {isSidebarOpen && (
             <div className="flex flex-col">
-              <span>{user.name}</span>
-              <span className="text-[--text-secondary]">
+              <h1 className="text-[0.9rem]">{user.name}</h1>
+              <span className="text-[--text-secondary] text-[0.7rem]">
                 {user.html_url
                   .slice(user.html_url.lastIndexOf("/"))
                   .replace("/", "@")}

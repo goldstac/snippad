@@ -30,7 +30,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (cancelled) return;
 
         if (!validation.valid) {
-          await window.app.store.token.clear();
+          // await window.app.store.token.clear(); // clears the stored token when invalid, including network errors
           setToken(null);
           setUser(null);
           setStatus("unauthenticated");

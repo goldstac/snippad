@@ -19,7 +19,7 @@ export default function SidebarTop({
     <div className="w-full">
       <div className={`flex flex-col transition-all`}>
         <div
-          className={`border-b border-[--border-color] h-[46px] p-1 mb-3 flex items-center justify-center gap-3`}
+          className={`border-b border-[--border-color] h-[46px] p-1 mb-3 flex items-center justify-center gap-3 flex-shrink-0`}
         >
           <div className="h-7 w-7 overflow-hidden">
             <img src="../../../assets/icon.svg" />
