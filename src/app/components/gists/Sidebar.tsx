@@ -23,7 +23,7 @@ export default function Sidebar() {
   if (filteredGists.length === 0) {
     return (
       <div className="h-full w-full flex flex-col items-center justify-center gap-4">
-        <h1 className="text-6xl">
+        <h1 className="text-5xl">
           {searchQuery ? "No matches" : "No gists yet"}
         </h1>
         <span className="text-[--text-muted] text-md">

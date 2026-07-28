@@ -9,7 +9,7 @@ interface BreadcrumbProps {
 
 export function Breadcrumb({ gistName, activeView }: BreadcrumbProps) {
   return (
-    <div className="flex items-center gap-1.5 text-xs text-[--text-muted] px-3 h-7 bg-[--background-secondary]">
+    <div className="flex items-center gap-1.5 text-xs text-[--text-muted] px-3 h-7 bg-[--background-secondary] p-4">
       <FileCode size={12} />
       <span>{sidebarItems.filter((i) => i.id == activeView)[0].label}</span>
       {gistName && (

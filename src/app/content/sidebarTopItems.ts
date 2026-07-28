@@ -1,4 +1,4 @@
-import { Eye, File, IconComponent, Lock, Palette, Star } from "reicon-react";
+import { Eye, File, IconComponent, Lock, Star } from "reicon-react";
 import { ViewTypes } from "../types/app";
 
 export const sidebarItems: {
@@ -14,5 +14,4 @@ export const sidebarItems: {
   { label: "Starred", id: "starred", icon: Star },
   { label: "Public", id: "public", icon: Eye },
   { label: "Secret", id: "secret", icon: Lock },
-  { label: "Themes", id: "themes", icon: Palette },
 ];

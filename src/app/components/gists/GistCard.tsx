@@ -76,7 +76,7 @@ export function GistCard({ gist, active, onClick }: GistCardProps) {
       }`}
     >
       <div className="flex items-start justify-between gap-2">
-        <h1 className="text-[0.89rem]">{title}</h1>
+        <h1 className="text-[0.94rem]">{title}</h1>
         <span className="text-[--text-muted] shrink-0 text-xs flex items-center justify-center gap-1.5">
           {isStarred && (
             <span className="text-xs text-[--accent-color]">

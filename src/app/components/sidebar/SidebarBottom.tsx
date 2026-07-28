@@ -1,4 +1,4 @@
-import { IconComponent, InfoCircle, Settings } from "reicon-react";
+import { IconComponent, InfoCircle, Palette, Settings } from "reicon-react";
 import { GitHubUser } from "../../types/gist";
 import SidebarItem from "./SidebarItem";
 
@@ -21,6 +21,7 @@ export default function SidebarBottom({
     onClick: () => void;
   }[] = [
     { label: "Settings", id: "settings", icon: Settings, onClick: () => {} },
+    { label: "Themes", id: "themes", icon: Palette, onClick: () => {} },
     { label: "About", id: "about", icon: InfoCircle, onClick: () => {} },
   ];
 
