@@ -22,13 +22,17 @@ export default function Sidebar() {
 
   if (filteredGists.length === 0) {
     return (
-      <div>
-        <div>title={searchQuery ? "No matches" : "No gists yet"}</div>
-        {searchQuery
-          ? "Try a different search term."
-          : selectedFilter === "starred"
-            ? "Star gists to see them here."
-            : "Create a new gist to get started."}
+      <div className="h-full w-full flex flex-col items-center justify-center gap-4">
+        <h1 className="text-6xl">
+          {searchQuery ? "No matches" : "No gists yet"}
+        </h1>
+        <span className="text-[--text-muted] text-md">
+          {searchQuery
+            ? "Try a different search term."
+            : selectedFilter === "starred"
+              ? "Star gists to see them here."
+              : "Create a new gist to get started."}
+        </span>
       </div>
     );
   }

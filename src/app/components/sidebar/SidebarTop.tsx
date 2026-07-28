@@ -1,4 +1,5 @@
 import { sidebarItems } from "../../content/sidebarTopItems";
+import { useGists } from "../../hooks/useGists";
 import { ViewTypes } from "../../types/app";
 import SidebarItem from "./SidebarItem";
 
@@ -15,6 +16,7 @@ export default function SidebarTop({
   isSidebarOpen,
   counts,
 }: SidebarTopProps) {
+  const { setFilter } = useGists();
   return (
     <div className="w-full">
       <div className={`flex flex-col transition-all`}>
@@ -35,7 +37,10 @@ export default function SidebarTop({
                 label={sidebarItems[i].label}
                 number={counts[item.id]}
                 active={activeView === item.id}
-                onClick={() => setActiveView(item.id)}
+                onClick={() => {
+                  setActiveView(item.id);
+                  setFilter(item.id);
+                }}
                 icon={<Icon size={18} />}
                 isSidebarOpen={isSidebarOpen}
               />

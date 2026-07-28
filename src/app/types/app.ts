@@ -1,1 +1,3 @@
-export type ViewTypes = "all" | "starred" | "public" | "secret" | "themes";
+import { GistFilter } from "./gist";
+
+export type ViewTypes = GistFilter & "themes";
