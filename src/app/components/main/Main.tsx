@@ -1,4 +1,4 @@
-import Sidebar from "../gists/Sidebar";
+import Sidebar from "@/components/gists/Sidebar";
 
 // type MainProps = {
 //   activeView: ViewTypes;

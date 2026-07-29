@@ -17,14 +17,23 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@pkg": ["./package.json"],
+      "@/*": ["./src/app/*"],
+      "@electron/*": ["./src/electron/*"],
+      "@shared/*": ["./src/shared/*"],
+    },
   },
   "include": [
     "src/app",
     "src/electron",
     "eslint.config.js",
     "tailwind.config.js",
-    "postcss.config.js"
+    "postcss.config.js",
   ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
 }

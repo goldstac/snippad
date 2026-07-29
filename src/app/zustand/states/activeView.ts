@@ -1,5 +1,5 @@
+import { ActiveViewStateType } from "@/zustand/types/activeView";
 import { create } from "zustand";
-import { ActiveViewStateType } from "../types/activeView";
 
 export const useActiveView = create<ActiveViewStateType>((set) => ({
   activeView: "all",

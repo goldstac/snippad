@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "reicon-react";
-import { Button } from "../ui/misc/Button";
-import { Spinner } from "../ui/misc/Sipnner";
+import { Button } from "@/components/ui/misc/Button";
+import { Spinner } from "@/components/ui/misc/Sipnner";
 
 interface TokenInputProps {
   onSubmit: (token: string) => Promise<boolean>;

@@ -1,4 +1,4 @@
-import { Theme } from "../../../shared/types/theme";
+import { Theme } from "@shared/types/theme";
 
 export type ThemeState = {
   theme: Theme | null;

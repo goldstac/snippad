@@ -1,5 +1,5 @@
+import type { GistContextValue } from "@/types/gist";
 import { createContext, useContext } from "react";
-import type { GistContextValue } from "../types/gist";
 
 export const GistContext = createContext<GistContextValue | null>(null);
 

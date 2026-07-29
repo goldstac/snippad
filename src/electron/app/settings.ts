@@ -1,8 +1,8 @@
-import { Settings } from "../../shared/types/settings";
-import { config } from "../constants/config";
-import { defaultSettings } from "../defaults/settings";
-import { configDir } from "../utils/configDir";
-import { readFile, writeFile } from "../utils/fs";
+import { Settings } from "@shared/types/settings";
+import { config } from "@electron/constants/config";
+import { defaultSettings } from "@electron/defaults/settings";
+import { configDir } from "@electron/utils/configDir";
+import { readFile, writeFile } from "@electron/utils/fs";
 
 export async function getSettings(): Promise<Settings | null> {
   try {

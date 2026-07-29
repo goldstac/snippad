@@ -1,6 +1,6 @@
+import pkg from "@pkg" with { type: "json" };
 import { homedir } from "os";
 import path from "path";
-import pkg from "../../../package.json" with { type: "json" };
 
 const { name } = pkg;
 

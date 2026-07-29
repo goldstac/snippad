@@ -1,4 +1,4 @@
-import { ViewTypes } from "../../types/app";
+import { ViewTypes } from "@/types/app";
 
 export type ActiveViewStateType = {
   activeView: ViewTypes;

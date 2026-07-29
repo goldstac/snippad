@@ -1,4 +1,4 @@
-import { Tag } from "../ui/misc/Tag";
+import { Tag } from "@/components/ui/misc/Tag";
 
 interface TagListProps {
   tags: string[];
@@ -22,7 +22,7 @@ export function TagList({
   }
 
   return (
-    <div className="flex flex-col h-full w-full px-3 py-2 my-1 border-t border-[--border-color] overflow-hidden">
+    <div className="flex flex-col h-full w-full px-3 py-2 mt-2 border-t border-[--border-color] overflow-hidden">
       <h1 className="text-lg flex-shrink-0 mb-1">Tags</h1>
 
       <div className="flex-1 overflow-y-auto overflow-x-hidden space-y-0.5 pr-1">

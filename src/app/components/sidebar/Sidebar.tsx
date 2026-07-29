@@ -1,6 +1,6 @@
-import { useAuth } from "../../hooks/useAuth";
-import { useGists } from "../../hooks/useGists";
-import { useSidebarState } from "../../zustand/states/sidebar";
+import { useAuth } from "@/hooks/useAuth";
+import { useGists } from "@/hooks/useGists";
+import { useSidebarState } from "@/zustand/states/sidebar";
 import SidebarBottom from "./SidebarBottom";
 import SidebarTop from "./SidebarTop";
 import { TagList } from "./TagList";

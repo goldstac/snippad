@@ -1,4 +1,4 @@
-import { Spinner } from "../misc/Sipnner";
+import { Spinner } from "@/components/ui/misc/Sipnner";
 
 export default function Loading() {
   return (

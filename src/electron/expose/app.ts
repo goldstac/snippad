@@ -1,5 +1,5 @@
+import { Theme } from "@shared/types/theme";
 import { ipcRenderer } from "electron";
-import { Theme } from "../../shared/types/theme";
 
 export const appObj = {
   helpers: {

@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef, useState, type ReactNode } from "react";
-import { GistContext } from "../context/GistContext";
-import { useAuth } from "../hooks/useAuth";
+import { GistContext } from "@/context/GistContext";
+import { useAuth } from "@/hooks/useAuth";
 import {
   createGist as apiCreateGist,
   deleteGist as apiDeleteGist,
@@ -11,7 +11,7 @@ import {
   updateGist as apiUpdateGist,
   fetchGists,
   fetchStarredGists,
-} from "../lib/github";
+} from "@/lib/github";
 import type {
   DraftGist,
   Gist,
@@ -20,7 +20,7 @@ import type {
   NewGistInput,
   SelectedGist,
   UpdateGistInput,
-} from "../types/gist";
+} from "@/types/gist";
 
 let draftCounter = 0;
 

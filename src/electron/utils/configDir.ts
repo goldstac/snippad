@@ -1,4 +1,4 @@
-import { config } from "../constants/config";
+import { config } from "@electron/constants/config";
 import { exists, mkdir } from "./fs";
 
 export function configDir() {

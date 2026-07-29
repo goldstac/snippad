@@ -1,8 +1,8 @@
+import { Button } from "@/components/ui/misc/Button";
+import { useGists } from "@/hooks/useGists";
+import { useActiveView } from "@/zustand/states/activeView";
+import { useSidebarState } from "@/zustand/states/sidebar";
 import { Sidebar } from "reicon-react";
-import { useGists } from "../../hooks/useGists";
-import { useActiveView } from "../../zustand/states/activeView";
-import { useSidebarState } from "../../zustand/states/sidebar";
-import { Button } from "../ui/misc/Button";
 import { Breadcrumb } from "./Breadcrumb";
 
 export default function Header() {

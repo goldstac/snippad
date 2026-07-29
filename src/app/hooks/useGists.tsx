@@ -1,1 +1,1 @@
-export { useGistsContext as useGists } from "../context/GistContext";
+export { useGistsContext as useGists } from "@/context/GistContext";

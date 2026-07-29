@@ -1,5 +1,5 @@
-import { appObj } from "../../electron/expose/app";
-import { ipcRendererObj } from "../../electron/expose/ipcRenderer";
+import { appObj } from "@electron/expose/app";
+import { ipcRendererObj } from "@electron/expose/ipcRenderer";
 
 declare global {
   interface Window {

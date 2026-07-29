@@ -1,10 +1,10 @@
-import { API_BASE } from "../constants/api";
+import { API_BASE } from "@/constants/api";
 import type {
   Gist,
   GitHubUser,
   NewGistInput,
   UpdateGistInput,
-} from "../types/gist";
+} from "@/types/gist";
 
 interface FetchOptions extends RequestInit {
   token: string;

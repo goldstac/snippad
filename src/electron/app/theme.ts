@@ -1,8 +1,8 @@
-import { Theme } from "../../shared/types/theme";
-import { config } from "../constants/config";
-import { defaultTheme } from "../defaults/theme";
-import { configDir } from "../utils/configDir";
-import { readFile, writeFile } from "../utils/fs";
+import { config } from "@electron/constants/config";
+import { defaultTheme } from "@electron/defaults/theme";
+import { configDir } from "@electron/utils/configDir";
+import { readFile, writeFile } from "@electron/utils/fs";
+import { Theme } from "@shared/types/theme";
 
 export async function getTheme(): Promise<Theme | null> {
   try {

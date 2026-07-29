@@ -1,8 +1,8 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { fetchUser, validateToken } from "../lib/github";
-import { AuthStatus } from "../types/auth";
-import type { GitHubUser } from "../types/gist";
+import { AuthContext } from "@/context/AuthContext";
+import { fetchUser, validateToken } from "@/lib/github";
+import { AuthStatus } from "@/types/auth";
+import type { GitHubUser } from "@/types/gist";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null);

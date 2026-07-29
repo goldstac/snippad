@@ -1,4 +1,4 @@
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import TokenInput from "./TokenInput";
 
 export default function LoginScreen() {

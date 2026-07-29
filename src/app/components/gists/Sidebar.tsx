@@ -1,5 +1,5 @@
-import { useGists } from "../../hooks/useGists";
-import { Spinner } from "../ui/misc/Sipnner";
+import { Spinner } from "@/components/ui/misc/Sipnner";
+import { useGists } from "@/hooks/useGists";
 import { GistCard } from "./GistCard";
 
 export default function Sidebar() {

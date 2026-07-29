@@ -1,5 +1,5 @@
+import { GitHubUser } from "@/types/gist";
 import { IconComponent, InfoCircle, Palette, Settings } from "reicon-react";
-import { GitHubUser } from "../../types/gist";
 import SidebarItem from "./SidebarItem";
 
 type SidebarBottomProps = {

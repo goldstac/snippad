@@ -1,5 +1,5 @@
+import { ViewTypes } from "@/types/app";
 import { Eye, File, IconComponent, Lock, Star } from "reicon-react";
-import { ViewTypes } from "../types/app";
 
 export const sidebarItems: {
   label: string;

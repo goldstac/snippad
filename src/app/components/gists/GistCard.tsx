@@ -1,7 +1,7 @@
+import { Tag } from "@/components/ui/misc/Tag";
+import { useGists } from "@/hooks/useGists";
+import type { Gist } from "@/types/gist";
 import { Star } from "reicon-react";
-import { useGists } from "../../hooks/useGists";
-import type { Gist } from "../../types/gist";
-import { Tag } from "../ui/misc/Tag";
 
 interface GistCardProps {
   gist: Gist;
