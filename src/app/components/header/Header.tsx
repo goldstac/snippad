@@ -1,22 +1,14 @@
-import React from "react";
 import { Sidebar } from "reicon-react";
 import { useGists } from "../../hooks/useGists";
-import { ViewTypes } from "../../types/app";
+import { useActiveView } from "../../zustand/states/activeView";
+import { useSidebarState } from "../../zustand/states/sidebar";
 import { Button } from "../ui/misc/Button";
 import { Breadcrumb } from "./Breadcrumb";
 
-type HeaderProps = {
-  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isSidebarOpen: boolean;
-  activeView: ViewTypes;
-};
-
-export default function Header({
-  setIsSidebarOpen,
-  isSidebarOpen,
-  activeView,
-}: HeaderProps) {
+export default function Header() {
+  const { isSidebarOpen, setSidebarState } = useSidebarState();
   const { selectedGist } = useGists();
+  const { activeView } = useActiveView();
 
   const gistName = selectedGist
     ? Object.keys(selectedGist.files)[0] ||
@@ -31,7 +23,7 @@ export default function Header({
       >
         <Button
           variant="secondary"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          onClick={() => setSidebarState(!isSidebarOpen)}
           className="border-none"
         >
           <Sidebar />

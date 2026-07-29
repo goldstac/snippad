@@ -1,6 +1,6 @@
 "use strict";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import LoginScreen from "./components/auth/LoginScreen";
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
@@ -10,31 +10,27 @@ import { useAuth } from "./hooks/useAuth";
 import { useGists } from "./hooks/useGists";
 import { AuthProvider } from "./providers/AuthProvider";
 import { GistProvider } from "./providers/GistProvider";
-import ThemeProvider from "./providers/ThemeProvider";
-import { ViewTypes } from "./types/app";
+import { useSidebarState } from "./zustand/states/sidebar";
+import { useTheme } from "./zustand/states/theme";
 
 function MainApp() {
-  const [activeView, setActiveView] = useState<ViewTypes>("all");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth <= 768);
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth <= 768);
+  const { setSidebarState } = useSidebarState();
   const { refresh } = useGists();
   useEffect(() => {
     refresh();
   }, [refresh]);
 
+  useEffect(() => {
+    setSidebarState(window.innerWidth <= 768);
+  }, [setSidebarState]);
+
   return (
     <div className="h-full bg-[--background-primary] flex">
-      <Sidebar
-        activeView={activeView}
-        setActiveView={setActiveView}
-        isSidebarOpen={isSidebarOpen}
-      />
+      <Sidebar />
 
       <div className="flex flex-col w-full">
-        <Header
-          isSidebarOpen={isSidebarOpen}
-          setIsSidebarOpen={setIsSidebarOpen}
-          activeView={activeView}
-        />
+        <Header />
 
         <Main />
       </div>
@@ -54,11 +50,15 @@ function AppInner() {
 }
 
 export default function App() {
+  const { loadTheme } = useTheme();
+
+  useEffect(() => {
+    loadTheme();
+  }, [loadTheme]);
+
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <AppInner />
-      </AuthProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <AppInner />
+    </AuthProvider>
   );
 }

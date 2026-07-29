@@ -1,22 +1,12 @@
-import React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useGists } from "../../hooks/useGists";
-import { ViewTypes } from "../../types/app";
+import { useSidebarState } from "../../zustand/states/sidebar";
 import SidebarBottom from "./SidebarBottom";
 import SidebarTop from "./SidebarTop";
 import { TagList } from "./TagList";
 
-type SidebarProps = {
-  activeView: ViewTypes;
-  setActiveView: React.Dispatch<React.SetStateAction<ViewTypes>>;
-  isSidebarOpen?: boolean;
-};
-
-export default function Sidebar({
-  activeView,
-  setActiveView,
-  isSidebarOpen = true,
-}: SidebarProps) {
+export default function Sidebar() {
+  const { isSidebarOpen } = useSidebarState();
   const { gists, starredIds, allTags, selectedTag, setTag } = useGists();
   const { user } = useAuth();
 
@@ -32,12 +22,7 @@ export default function Sidebar({
     <div
       className={`${isSidebarOpen ? "w-80" : "w-14"} h-full flex flex-col flex-shrink-0 items-start justify-between border-r bg-[--background-secondary] border-[--border-color] transition-all p-${isSidebarOpen ? 2 : 1}`}
     >
-      <SidebarTop
-        activeView={activeView}
-        setActiveView={setActiveView}
-        isSidebarOpen={isSidebarOpen}
-        counts={counts}
-      />
+      <SidebarTop isSidebarOpen={isSidebarOpen} counts={counts} />
       <TagList
         isSidebarOpen={isSidebarOpen}
         tags={allTags}

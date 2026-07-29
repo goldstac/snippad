@@ -1,4 +1,5 @@
 import { ipcRenderer } from "electron";
+import { Theme } from "../../shared/types/theme";
 
 export const appObj = {
   helpers: {
@@ -10,7 +11,7 @@ export const appObj = {
   },
   theme: {
     get: () => ipcRenderer.invoke("theme:get"),
-    set: (theme: string) => ipcRenderer.invoke("theme:set", theme),
+    set: (theme: Theme) => ipcRenderer.invoke("theme:set", theme),
   },
   store: {
     token: {

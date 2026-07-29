@@ -1,22 +1,16 @@
 import { sidebarItems } from "../../content/sidebarTopItems";
 import { useGists } from "../../hooks/useGists";
-import { ViewTypes } from "../../types/app";
+import { useActiveView } from "../../zustand/states/activeView";
 import SidebarItem from "./SidebarItem";
 
 type SidebarTopProps = {
-  activeView: ViewTypes;
-  setActiveView: React.Dispatch<React.SetStateAction<ViewTypes>>;
   isSidebarOpen: boolean;
   counts: Record<string, number>;
 };
 
-export default function SidebarTop({
-  activeView,
-  setActiveView,
-  isSidebarOpen,
-  counts,
-}: SidebarTopProps) {
+export default function SidebarTop({ isSidebarOpen, counts }: SidebarTopProps) {
   const { setFilter } = useGists();
+  const { activeView, setActiveView } = useActiveView();
   return (
     <div className="w-full">
       <div className={`flex flex-col transition-all`}>
