@@ -1,20 +1,16 @@
 import { Tag } from "@/components/ui/misc/Tag";
 import { useBreadcrumb } from "@/states/breadcrumb/breadcrumb";
+import { useSidebarState } from "@/states/sidebar/sidebar";
 
 interface TagListProps {
   tags: string[];
   selectedTag: string | null;
   onSelect: (tag: string | null) => void;
-  isSidebarOpen: boolean;
 }
 
-export function TagList({
-  tags,
-  selectedTag,
-  onSelect,
-  isSidebarOpen,
-}: TagListProps) {
+export function TagList({ tags, selectedTag, onSelect }: TagListProps) {
   const { setBase } = useBreadcrumb();
+  const { isSidebarOpen } = useSidebarState();
 
   if (!isSidebarOpen) return null;
 

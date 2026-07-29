@@ -21,17 +21,9 @@ export default function Sidebar() {
     <div
       className={`${isSidebarOpen ? "w-80" : "w-14"} p-2 h-full flex flex-col flex-shrink-0 items-start justify-between border-r bg-[--background-secondary] border-[--border-color] transition-all`}
     >
-      <SidebarTop isSidebarOpen={isSidebarOpen} counts={counts} />
-      <TagList
-        isSidebarOpen={isSidebarOpen}
-        tags={allTags}
-        onSelect={setTag}
-        selectedTag={selectedTag}
-      />
-      <SidebarBottom
-        isSidebarOpen={isSidebarOpen}
-        user={user === null ? undefined : user}
-      />
+      <SidebarTop counts={counts} />
+      <TagList tags={allTags} onSelect={setTag} selectedTag={selectedTag} />
+      <SidebarBottom user={user === null ? undefined : user} />
     </div>
   );
 }

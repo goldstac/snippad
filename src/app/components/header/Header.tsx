@@ -16,7 +16,7 @@ export default function Header() {
           onClick={() => setSidebarState(!isSidebarOpen)}
           className="border-none"
         >
-          <Sidebar />
+          <Sidebar className="text-[--text-muted]" />
         </Button>
         <div></div>
       </div>

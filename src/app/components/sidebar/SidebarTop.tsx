@@ -1,17 +1,18 @@
 import { sidebarItems } from "@/content/sidebarTopItems";
 import { useGists } from "@/hooks/useGists";
 import { useBreadcrumb } from "@/states/breadcrumb/breadcrumb";
+import { useSidebarState } from "@/states/sidebar/sidebar";
 import { useActiveView } from "@/states/view/activeView";
 import SidebarItem from "./SidebarItem";
 
 type SidebarTopProps = {
-  isSidebarOpen: boolean;
   counts: Record<string, number>;
 };
 
-export default function SidebarTop({ isSidebarOpen, counts }: SidebarTopProps) {
+export default function SidebarTop({ counts }: SidebarTopProps) {
   const { setFilter } = useGists();
   const { activeView, setActiveView } = useActiveView();
+  const { isSidebarOpen } = useSidebarState();
   const { setBase } = useBreadcrumb();
 
   return (
@@ -40,7 +41,6 @@ export default function SidebarTop({ isSidebarOpen, counts }: SidebarTopProps) {
                   setFilter(item.id);
                 }}
                 icon={<Icon size={18} />}
-                isSidebarOpen={isSidebarOpen}
               />
             );
           })}

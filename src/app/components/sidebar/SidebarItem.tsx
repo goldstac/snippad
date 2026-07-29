@@ -1,3 +1,4 @@
+import { useSidebarState } from "@/states/sidebar/sidebar";
 import { MouseEvent, ReactElement } from "react";
 
 type SidebarItemProps = {
@@ -7,7 +8,6 @@ type SidebarItemProps = {
   // changeView: (view: string) => void;
   onClick: (e: MouseEvent<HTMLButtonElement>) => void;
   icon: ReactElement;
-  isSidebarOpen: boolean;
 };
 
 export default function SidebarItem({
@@ -17,8 +17,9 @@ export default function SidebarItem({
   // changeView,
   onClick,
   icon,
-  isSidebarOpen,
 }: SidebarItemProps) {
+  const { isSidebarOpen } = useSidebarState();
+
   return (
     <button
       onClick={onClick}
