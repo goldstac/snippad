@@ -1,4 +1,5 @@
 import { Tag } from "@/components/ui/misc/Tag";
+import { useBreadcrumb } from "@/states/breadcrumb/breadcrumb";
 
 interface TagListProps {
   tags: string[];
@@ -13,6 +14,8 @@ export function TagList({
   onSelect,
   isSidebarOpen,
 }: TagListProps) {
+  const { setBase } = useBreadcrumb();
+
   if (!isSidebarOpen) return null;
 
   if (tags.length === 0) {
@@ -30,7 +33,10 @@ export function TagList({
           <div key={tag} className="p-1">
             <Tag
               active={selectedTag === tag}
-              onClick={() => onSelect(selectedTag === tag ? null : tag)}
+              onClick={() => {
+                onSelect(selectedTag === tag ? null : tag);
+                setBase(`# ${tag}`);
+              }}
               tag={tag}
             >
               {/*{tag}*/}

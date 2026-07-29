@@ -1,5 +1,6 @@
 import { Spinner } from "@/components/ui/misc/Sipnner";
 import { useGists } from "@/hooks/useGists";
+import { useBreadcrumb } from "@/states/breadcrumb/breadcrumb";
 import { GistCard } from "./GistCard";
 
 export default function Sidebar() {
@@ -11,6 +12,7 @@ export default function Sidebar() {
     searchQuery,
     selectedFilter,
   } = useGists();
+  const { setPath } = useBreadcrumb();
 
   if (loading && filteredGists.length === 0) {
     return (
@@ -44,7 +46,10 @@ export default function Sidebar() {
           key={gist.id}
           gist={gist}
           active={selectedGist?.id === gist.id}
-          onClick={() => selectGist(gist)}
+          onClick={() => {
+            selectGist(gist);
+            setPath([gist.id.slice(0, 7)]);
+          }}
         />
       ))}
     </div>

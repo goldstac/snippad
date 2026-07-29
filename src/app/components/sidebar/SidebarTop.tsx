@@ -1,5 +1,6 @@
 import { sidebarItems } from "@/content/sidebarTopItems";
 import { useGists } from "@/hooks/useGists";
+import { useBreadcrumb } from "@/states/breadcrumb/breadcrumb";
 import { useActiveView } from "@/states/view/activeView";
 import SidebarItem from "./SidebarItem";
 
@@ -11,6 +12,8 @@ type SidebarTopProps = {
 export default function SidebarTop({ isSidebarOpen, counts }: SidebarTopProps) {
   const { setFilter } = useGists();
   const { activeView, setActiveView } = useActiveView();
+  const { setBase } = useBreadcrumb();
+
   return (
     <div className="w-full">
       <div className={`flex flex-col transition-all`}>
@@ -33,6 +36,7 @@ export default function SidebarTop({ isSidebarOpen, counts }: SidebarTopProps) {
                 active={activeView === item.id}
                 onClick={() => {
                   setActiveView(item.id);
+                  setBase(item.label);
                   setFilter(item.id);
                 }}
                 icon={<Icon size={18} />}
