@@ -47,7 +47,6 @@ export default function SidebarTop({
             );
           })}
         </div>
-        {/* TODO: add tags section to filter GistCards based on tags */}
       </div>
     </div>
   );

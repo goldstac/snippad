@@ -1,6 +1,7 @@
 import { Star } from "reicon-react";
 import { useGists } from "../../hooks/useGists";
 import type { Gist } from "../../types/gist";
+import { Tag } from "../ui/misc/Tag";
 
 interface GistCardProps {
   gist: Gist;
@@ -48,7 +49,7 @@ function extractTitleAndDescription(description: string | null | undefined): {
 }
 
 export function GistCard({ gist, active, onClick }: GistCardProps) {
-  const { starredIds } = useGists();
+  const { starredIds, setTag } = useGists();
   const isStarred = starredIds.has(gist.id);
 
   const filenames = Object.keys(gist.files);
@@ -94,11 +95,12 @@ export function GistCard({ gist, active, onClick }: GistCardProps) {
       </div>
 
       {(gist.tags.length > 0 || isStarred) && (
-        <div className="flex items-center gap-2 mt-1">
-          {gist.tags.map((tag) => (
-            <span key={tag} className="text-xs text-[--text-muted]">
-              #{tag}
-            </span>
+        <div className="flex items-center mt-1">
+          {gist.tags.slice(0, 3).map((tag) => (
+            <Tag tag={tag} space={false} onClick={() => setTag(tag)} />
+            // <span key={tag} className="text-xs text-[--text-muted]">
+            //   #{tag}
+            // </span>
           ))}
         </div>
       )}

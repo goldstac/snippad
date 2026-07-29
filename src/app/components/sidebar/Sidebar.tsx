@@ -4,6 +4,7 @@ import { useGists } from "../../hooks/useGists";
 import { ViewTypes } from "../../types/app";
 import SidebarBottom from "./SidebarBottom";
 import SidebarTop from "./SidebarTop";
+import { TagList } from "./TagList";
 
 type SidebarProps = {
   activeView: ViewTypes;
@@ -16,7 +17,7 @@ export default function Sidebar({
   setActiveView,
   isSidebarOpen = true,
 }: SidebarProps) {
-  const { gists, starredIds } = useGists();
+  const { gists, starredIds, allTags, selectedTag, setTag } = useGists();
   const { user } = useAuth();
 
   const counts: Record<string, number> = {
@@ -27,14 +28,21 @@ export default function Sidebar({
   };
 
   return (
+    // FIXME: avoid resizing sidebar elements except width
     <div
-      className={`${isSidebarOpen ? "w-80" : "w-14"} h-full flex flex-col items-start justify-between border-r bg-[--background-secondary] border-[--border-color] transition-all p-${isSidebarOpen ? 2 : 1}`}
+      className={`${isSidebarOpen ? "w-80" : "w-14"} h-full flex flex-col flex-shrink-0 items-start justify-between border-r bg-[--background-secondary] border-[--border-color] transition-all p-${isSidebarOpen ? 2 : 1}`}
     >
       <SidebarTop
         activeView={activeView}
         setActiveView={setActiveView}
         isSidebarOpen={isSidebarOpen}
         counts={counts}
+      />
+      <TagList
+        isSidebarOpen={isSidebarOpen}
+        tags={allTags}
+        onSelect={setTag}
+        selectedTag={selectedTag}
       />
       <SidebarBottom
         isSidebarOpen={isSidebarOpen}
