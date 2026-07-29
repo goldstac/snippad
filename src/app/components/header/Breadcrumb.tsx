@@ -1,23 +1,20 @@
-import { ChevronRight, FileCode } from "lucide-react";
-import { sidebarItems } from "../../content/sidebarTopItems";
-import { ViewTypes } from "../../types/app";
+import { ChevronRight, CodeFile } from "reicon-react";
 
 interface BreadcrumbProps {
-  gistName?: string;
-  activeView: ViewTypes;
+  path: (string | number)[];
 }
 
-export function Breadcrumb({ gistName, activeView }: BreadcrumbProps) {
+export function Breadcrumb({ path }: BreadcrumbProps) {
   return (
-    <div className="flex items-center gap-1.5 text-xs text-[--text-muted] px-3 h-7 bg-[--background-secondary] p-4">
-      <FileCode size={12} />
-      <span>{sidebarItems.filter((i) => i.id == activeView)[0].label}</span>
-      {gistName && (
-        <>
-          <ChevronRight size={12} />
-          <span className="text-[--text-secondary]">{gistName}</span>
-        </>
-      )}
+    <div className="flex items-center gap-2 text-xs text-[--text-muted] px-3 h-7 bg-[--background-secondary] p-4">
+      <CodeFile size={16} />
+      {path.map((p, i) => {
+        return (
+          <span className="flex gap-2 items-center">
+            {p} {i !== path.length - 1 && <ChevronRight size={12} />}
+          </span>
+        );
+      })}
     </div>
   );
 }

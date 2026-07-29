@@ -38,7 +38,7 @@ export default function Header({
         </Button>
         <div></div>
       </div>
-      <Breadcrumb gistName={gistName} activeView={activeView} />
+      <Breadcrumb path={[activeView, gistName || ""].filter(Boolean)} />
     </div>
   );
 }
