@@ -22,7 +22,7 @@ export default function SidebarItem({
   return (
     <button
       onClick={onClick}
-      className={`${isSidebarOpen && "w-full"} rounded-md bg-[${active ? "--background-tertiary" : "--background-secondary"}] p-3 flex items-center justify-between border border-transparent hover:border-[--border-color] transition-all`}
+      className={`w-full rounded-md bg-[${active ? "--background-tertiary" : "--background-secondary"}] p-3 flex items-center ${isSidebarOpen ? "justify-between" : "justify-center"} border border-transparent hover:border-[--border-color] transition-all`}
     >
       <div className="flex gap-4">
         <span

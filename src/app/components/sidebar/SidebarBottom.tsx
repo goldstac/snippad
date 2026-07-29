@@ -30,7 +30,7 @@ export default function SidebarBottom({
       <div
         className={`flex flex-col transition-all border-t border-[--border-color]`}
       >
-        <div className={`flex flex-col ${!isSidebarOpen && "gap-1"}`}>
+        <div className={`flex flex-col`}>
           {sidebarItems.map((item, i) => {
             const Icon = item.icon;
             return (
@@ -46,7 +46,7 @@ export default function SidebarBottom({
           })}
         </div>
         <div
-          className={`flex gap-3 ${isSidebarOpen && "bg-[--background-tertiary]"} py-3 px-${isSidebarOpen ? 3 : 2} rounded-md flex-shrink-0`}
+          className={`flex items-center gap-3 ${isSidebarOpen && "bg-[--background-tertiary]"} ${!isSidebarOpen && "justify-center"} py-3 px-3 rounded-md flex-shrink-0`}
         >
           <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
             <img src={user.avatar_url} />

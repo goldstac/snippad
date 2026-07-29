@@ -18,9 +18,8 @@ export default function Sidebar() {
   };
 
   return (
-    // FIXME: avoid resizing sidebar elements except width
     <div
-      className={`${isSidebarOpen ? "w-80" : "w-14"} h-full flex flex-col flex-shrink-0 items-start justify-between border-r bg-[--background-secondary] border-[--border-color] transition-all p-${isSidebarOpen ? 2 : 1}`}
+      className={`${isSidebarOpen ? "w-80" : "w-14"} p-2 h-full flex flex-col flex-shrink-0 items-start justify-between border-r bg-[--background-secondary] border-[--border-color] transition-all`}
     >
       <SidebarTop isSidebarOpen={isSidebarOpen} counts={counts} />
       <TagList

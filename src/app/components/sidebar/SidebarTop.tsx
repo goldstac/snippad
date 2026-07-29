@@ -22,7 +22,7 @@ export default function SidebarTop({ isSidebarOpen, counts }: SidebarTopProps) {
           </div>
           {isSidebarOpen && <h1 className="text-xl">PureGist</h1>}
         </div>
-        <div className={`flex flex-col ${!isSidebarOpen && "gap-1"}`}>
+        <div className={`flex flex-col`}>
           {sidebarItems.map((item, i) => {
             const Icon = item.icon;
             return (
