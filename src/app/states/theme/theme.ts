@@ -1,7 +1,7 @@
 import { applyTheme } from "@/lib/theme";
-import { ThemeState } from "@/zustand/types/theme";
 import { Theme } from "@shared/types/theme";
 import { create } from "zustand";
+import { ThemeState } from "./theme.types";
 
 export const useTheme = create<ThemeState>((set, get) => ({
   theme: null,

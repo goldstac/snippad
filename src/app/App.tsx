@@ -10,8 +10,8 @@ import { useAuth } from "./hooks/useAuth";
 import { useGists } from "./hooks/useGists";
 import { AuthProvider } from "./providers/AuthProvider";
 import { GistProvider } from "./providers/GistProvider";
-import { useSidebarState } from "./zustand/states/sidebar";
-import { useTheme } from "./zustand/states/theme";
+import { useSidebarState } from "./states/sidebar/sidebar";
+import { useTheme } from "./states/theme/theme";
 
 function MainApp() {
   // const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth <= 768);

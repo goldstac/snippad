@@ -1,5 +1,5 @@
-import { SidebarStateType } from "@/zustand/types/sidebar";
 import { create } from "zustand";
+import { SidebarStateType } from "./sidebar.types";
 
 export const useSidebarState = create<SidebarStateType>((set) => ({
   isSidebarOpen: true,

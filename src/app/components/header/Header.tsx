@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/misc/Button";
 import { useGists } from "@/hooks/useGists";
-import { useActiveView } from "@/zustand/states/activeView";
-import { useSidebarState } from "@/zustand/states/sidebar";
+import { useSidebarState } from "@/states/sidebar/sidebar";
+import { useActiveView } from "@/states/view/activeView";
 import { Sidebar } from "reicon-react";
 import { Breadcrumb } from "./Breadcrumb";
 

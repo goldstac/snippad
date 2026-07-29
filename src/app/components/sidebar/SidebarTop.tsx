@@ -1,6 +1,6 @@
 import { sidebarItems } from "@/content/sidebarTopItems";
 import { useGists } from "@/hooks/useGists";
-import { useActiveView } from "@/zustand/states/activeView";
+import { useActiveView } from "@/states/view/activeView";
 import SidebarItem from "./SidebarItem";
 
 type SidebarTopProps = {
