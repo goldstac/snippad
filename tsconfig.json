@@ -22,7 +22,7 @@
     "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
-      "@pkg": ["package.json"],
+      "@pkg": ["./package.json"],
       "@/*": ["./src/app/*"],
       "@electron/*": ["./src/electron/*"],
       "@shared/*": ["./src/shared/*"],

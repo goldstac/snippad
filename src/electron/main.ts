@@ -15,7 +15,9 @@ import {
   starSnip,
   updateSnip,
 } from "./app/snippets";
+import { getItem, removeItem, setItem } from "./app/store";
 import { getTheme, setTheme } from "./app/theme";
+import { registerUpdater } from "./app/updater";
 import { getPlatform } from "./utils/getPlatform";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -56,6 +58,13 @@ function registerIpcHandlers(): void {
   ipcMain.handle("snips:getAllTags", async () => getAllTags());
   ipcMain.handle("snips:getStarred", async () => getStarredSnips());
   ipcMain.handle("snips:star", async (_, id: string) => starSnip(id));
+
+  // store
+  ipcMain.handle("store:get", (_, key: string) => getItem(key));
+  ipcMain.handle("store:set", (_, key: string, value: string) =>
+    setItem(key, value),
+  );
+  ipcMain.handle("store:remove", (_, key: string) => removeItem(key));
 }
 
 function createWindow(): void {
@@ -117,6 +126,7 @@ if (!gotTheLock) {
 
   app.whenReady().then(() => {
     registerIpcHandlers();
+    registerUpdater();
     createWindow();
 
     app.on("activate", () => {

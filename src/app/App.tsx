@@ -5,6 +5,8 @@ import Main from "./components/main/Main";
 import Popup from "./components/popup/Popup";
 import { Sidebar } from "./components/sidebar/main/Sidebar";
 import { useWindowDimensions } from "./hooks/useWindowDimensions";
+import { isUpdated } from "./lib/updates";
+import { useModal } from "./states/modal/modal";
 import { useSettings } from "./states/settings/settings";
 import { useSidebarState } from "./states/sidebar/sidebar";
 import { useSnip } from "./states/snips/snips";
@@ -31,6 +33,7 @@ export default function App() {
   const { setSidebarState } = useSidebarState();
   const { width } = useWindowDimensions();
   const { loadSnips } = useSnip();
+  const { openModal } = useModal();
 
   useEffect(() => {
     loadTheme();
@@ -41,12 +44,24 @@ export default function App() {
   }, [loadSettings]);
 
   useEffect(() => {
+    loadSnips();
+  }, [loadSnips]);
+
+  useEffect(() => {
     setSidebarState(width > 1000);
   }, [setSidebarState, width]);
 
   useEffect(() => {
-    loadSnips();
-  }, [loadSnips]);
+    (async () => {
+      const updated = await isUpdated();
+      if (updated !== false) {
+        openModal({
+          type: "changelog",
+          title: updated === null ? "New Release!" : "SnipBase Updated!",
+        });
+      }
+    })();
+  }, [openModal]);
 
   return settings?.name ? <MainApp /> : <Form />;
 }

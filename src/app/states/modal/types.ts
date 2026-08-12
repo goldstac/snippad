@@ -10,16 +10,14 @@ export type ModalType =
   | "newsnip"
   | null;
 
-export type OpenModalType = {
+export interface OpenModalType {
   type: NonNullable<ModalType>;
   title: string;
-  data?: { [key: string]: string } | null;
-};
+  data?: Record<string, string> | null;
+}
 
-export type ModalState = {
+export interface ModalState extends Omit<OpenModalType, "type"> {
   type: ModalType;
-  title: string;
-  data?: { [key: string]: string } | null;
   openModal: ({ type, title }: OpenModalType) => void;
   closeModal: () => void;
-};
+}

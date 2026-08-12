@@ -61,7 +61,7 @@ export default function SidebarTop() {
         `}
       >
         <img
-          src="../../../../assets/icon.svg"
+          src="./icon.svg"
           width="30"
           className="flex-shrink-0"
           alt="SnipBase Logo"
