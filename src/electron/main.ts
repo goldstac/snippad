@@ -2,9 +2,20 @@ import { app, BrowserWindow, ipcMain, shell } from "electron";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { CreateSnipInput, UpdateSnipInput } from "@shared/types/snippets";
 import { getSettings, setSettings } from "./app/settings";
+import {
+  createSnip,
+  deleteSnip,
+  getAllSnips,
+  getAllTags,
+  getSnip,
+  getSnips,
+  getStarredSnips,
+  starSnip,
+  updateSnip,
+} from "./app/snippets";
 import { getTheme, setTheme } from "./app/theme";
-import { getToken, removeToken, setToken } from "./store/token";
 import { getPlatform } from "./utils/getPlatform";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -20,7 +31,7 @@ let mainWindow: BrowserWindow | null = null;
 // register IPC listeners
 function registerIpcHandlers(): void {
   // helpers
-  ipcMain.handle("app:getPlatform", () => getPlatform());
+  // ipcMain.handle("helpers:getPlatform", () => getPlatform());
 
   // settings
   ipcMain.handle("settings:get", async () => getSettings());
@@ -30,10 +41,21 @@ function registerIpcHandlers(): void {
   ipcMain.handle("theme:get", async () => getTheme());
   ipcMain.handle("theme:set", async (_, theme) => setTheme(theme));
 
-  // electron-store
-  ipcMain.handle("store:getToken", async () => getToken());
-  ipcMain.handle("store:setToken", async (_, token) => setToken(token));
-  ipcMain.handle("store:removeToken", async () => removeToken());
+  // snips
+  ipcMain.handle("snips:get", async (_, id?: string) =>
+    id ? getSnip(id) : getSnips(),
+  );
+  ipcMain.handle("snips:getAll", async () => getAllSnips());
+  ipcMain.handle("snips:create", async (_, snip: CreateSnipInput) =>
+    createSnip(snip),
+  );
+  ipcMain.handle("snips:update", async (_, id: string, snip: UpdateSnipInput) =>
+    updateSnip(id, snip),
+  );
+  ipcMain.handle("snips:delete", async (_, id: string) => deleteSnip(id));
+  ipcMain.handle("snips:getAllTags", async () => getAllTags());
+  ipcMain.handle("snips:getStarred", async () => getStarredSnips());
+  ipcMain.handle("snips:star", async (_, id: string) => starSnip(id));
 }
 
 function createWindow(): void {
@@ -42,7 +64,7 @@ function createWindow(): void {
     height: 700,
     minWidth: 800,
     minHeight: 500,
-    title: "PureGist",
+    title: "SnipBase",
     autoHideMenuBar: true,
     show: false,
     webPreferences: {
@@ -50,7 +72,13 @@ function createWindow(): void {
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: true,
+      webSecurity: true,
     },
+  });
+
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: "deny" };
   });
 
   mainWindow.once("ready-to-show", () => {

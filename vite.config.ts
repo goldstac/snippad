@@ -2,19 +2,31 @@ import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { defineConfig } from "vite";
 import electron from "vite-plugin-electron/simple";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
+  resolve: {
+    tsconfigPaths: true,
+  },
   plugins: [
     react(),
-    tsconfigPaths(),
-    // tailwindcss(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: "node_modules/monaco-editor/min/vs",
+          dest: "monaco",
+        },
+      ],
+      watch: {
+        reloadPageOnChange: true,
+      },
+    }),
     electron({
       main: {
         entry: "src/electron/main.ts",
       },
       preload: {
-        input: path.join(__dirname, "src/electron/preload.ts"),
+        input: path.join(import.meta.dirname, "src/electron/preload.ts"),
       },
       renderer: process.env.NODE_ENV === "test" ? undefined : {},
     }),

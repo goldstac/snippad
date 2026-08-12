@@ -1,9 +1,9 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   $schema: "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  appId: "io.github.puregist",
+  appId: "io.github.snipbase",
   asar: true,
-  productName: "PureGist",
+  productName: "SnipBase",
   icon: "assets/icon.svg",
   directories: {
     output: "release/${version}",

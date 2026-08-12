@@ -8,10 +8,9 @@ export function applyTheme(themeObj: Theme | null): void {
 
   if (!theme) return;
 
-  root.style.setProperty("--background-primary", theme.backgroundPrimary);
-  root.style.setProperty("--background-secondary", theme.backgroundSecondary);
-  root.style.setProperty("--background-tertiary", theme.backgroundTertiary);
-  root.style.setProperty("--background-elevated", theme.backgroundElevated);
+  root.style.setProperty("--bg-primary", theme.backgroundPrimary);
+  root.style.setProperty("--bg-secondary", theme.backgroundSecondary);
+  root.style.setProperty("--bg-tertiary", theme.backgroundTertiary);
   root.style.setProperty("--overlay-color", theme.overlayColor);
   root.style.setProperty("--border-color", theme.borderColor);
   root.style.setProperty("--border-color-subtle", theme.borderColorSubtle);
@@ -25,10 +24,8 @@ export function applyTheme(themeObj: Theme | null): void {
   root.style.setProperty("--danger-hover", theme.dangerHover);
   root.style.setProperty("--success", theme.success);
   root.style.setProperty("--warning", theme.warning);
-  root.style.setProperty("--tag-background", theme.tagBackground);
-  root.style.setProperty("--tag-text", theme.tagText);
+  root.style.setProperty("--input-background", theme.inputBackground);
   root.style.setProperty("--scrollbar-thumb", theme.scrollbarThumb);
   root.style.setProperty("--scrollbar-track", theme.scrollbarTrack);
-  root.style.setProperty("--editor-background", theme.editorBackground);
   root.style.setProperty("--shadow", theme.shadow);
 }

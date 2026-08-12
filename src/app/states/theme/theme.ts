@@ -1,9 +1,9 @@
 import { applyTheme } from "@/lib/theme";
 import { Theme } from "@shared/types/theme";
 import { create } from "zustand";
-import { ThemeState } from "./theme.types";
+import { ThemeState } from "./types";
 
-export const useTheme = create<ThemeState>((set, get) => ({
+export const useTheme = create<ThemeState>((set) => ({
   theme: null,
 
   loadTheme: async () => {
@@ -14,10 +14,6 @@ export const useTheme = create<ThemeState>((set, get) => ({
     } catch (error) {
       console.error("Failed to get theme: ", error);
     }
-  },
-
-  getTheme: async () => {
-    return get().theme;
   },
 
   setTheme: async (newTheme: Theme) => {

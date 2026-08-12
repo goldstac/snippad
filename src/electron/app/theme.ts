@@ -1,6 +1,6 @@
 import { config } from "@electron/constants/config";
 import { defaultTheme } from "@electron/defaults/theme";
-import { configDir } from "@electron/utils/configDir";
+import { createBaseDir } from "@electron/utils/configDir";
 import { readFile, writeFile } from "@electron/utils/fs";
 import { Theme } from "@shared/types/theme";
 
@@ -16,9 +16,9 @@ export async function getTheme(): Promise<Theme | null> {
 export async function setTheme(theme: Theme) {
   const themePath = config.theme;
   try {
-    configDir();
-    await writeFile(themePath, JSON.stringify(theme));
-  } catch {
-    // ignore
+    createBaseDir();
+    await writeFile(themePath, JSON.stringify(theme, null, 2));
+  } catch (error) {
+    console.error("Failed to set theme: ", error);
   }
 }

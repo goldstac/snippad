@@ -1,10 +1,11 @@
-import Sidebar from "@/components/gists/Sidebar";
-
-// type MainProps = {
-//   activeView: ViewTypes;
-//   setActiveView: React.Dispatch<React.SetStateAction<ViewTypes>>;
-// };
+import EditorArea from "../editor/EditorArea";
+import Sidebar from "../sidebar/inner/Sidebar";
 
 export default function Main() {
-  return <Sidebar />;
+  return (
+    <main className="h-full w-full flex">
+      <Sidebar />
+      <EditorArea />
+    </main>
+  );
 }

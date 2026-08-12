@@ -1,26 +1,52 @@
-import { Button } from "@/components/ui/misc/Button";
+import { useModal } from "@/states/modal/modal";
+import { useSettings } from "@/states/settings/settings";
 import { useSidebarState } from "@/states/sidebar/sidebar";
-import { Sidebar } from "reicon-react";
-import { Breadcrumb } from "./Breadcrumb";
+import { useView } from "@/states/view/view";
+import { Plus, Sidebar } from "reicon-react";
+import { Button } from "../ui/Button";
 
 export default function Header() {
-  const { isSidebarOpen, setSidebarState } = useSidebarState();
+  const { isSidebarOpen, toggleSidebarState } = useSidebarState();
+  const { openModal } = useModal();
+  const { activeView } = useView();
+  const { settings } = useSettings();
+  const fillIcons = settings?.client?.icons?.fill;
 
   return (
-    <div className="w-full flex flex-col">
-      <div
-        className={`border-b border-[--border-color] w-full bg-[--background-secondary] h-[54px] p-2 flex items-center justify-between gap-3`}
-      >
-        <Button
-          variant="secondary"
-          onClick={() => setSidebarState(!isSidebarOpen)}
-          className="border-none"
-        >
-          <Sidebar className="text-[--text-muted]" />
+    <header
+      className={`
+        flex items-center justify-between bg-[--bg-secondary] h-[3.75rem] p-2 border-b border-[--border-color] transition-all w-full flex-shrink-0
+      `}
+    >
+      <div className="flex items-center gap-3">
+        <Button size="sm" onClick={() => toggleSidebarState()}>
+          <Sidebar
+            size={22}
+            className="text-[--text-secondary]"
+            weight={
+              fillIcons === "auto"
+                ? isSidebarOpen
+                  ? "Filled"
+                  : "Outline"
+                : fillIcons === true
+                  ? "Filled"
+                  : "Outline"
+            }
+          />
         </Button>
-        <div></div>
+        <h1 className={`text-lg ${activeView.tag && "code"}`}>
+          {activeView.label}
+        </h1>
       </div>
-      <Breadcrumb />
-    </div>
+
+      <div>
+        <Button
+          size="sm"
+          onClick={() => openModal({ type: "newsnip", title: "New Snip" })}
+        >
+          <Plus size={16} />
+        </Button>
+      </div>
+    </header>
   );
 }

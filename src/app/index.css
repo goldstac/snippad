@@ -33,6 +33,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.bricolage,
 h1,
 h2,
 h3,
@@ -70,7 +71,12 @@ h6 {
   background: var(--text-muted);
 }
 
+::selection {
+  background: var(--accent-color-muted);
+}
+
 button:focus,
-input:focus {
+input:focus,
+select:focus {
   outline: none;
 }

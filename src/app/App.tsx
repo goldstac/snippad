@@ -1,64 +1,52 @@
-"use strict";
-
 import { useEffect } from "react";
-import LoginScreen from "./components/auth/LoginScreen";
+import Form from "./components/auth/Form";
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
-import Sidebar from "./components/sidebar/Sidebar";
-import Loading from "./components/ui/overlays/Loading";
-import { useAuth } from "./hooks/useAuth";
-import { useGists } from "./hooks/useGists";
-import { AuthProvider } from "./providers/AuthProvider";
-import { GistProvider } from "./providers/GistProvider";
+import Popup from "./components/popup/Popup";
+import { Sidebar } from "./components/sidebar/main/Sidebar";
+import { useWindowDimensions } from "./hooks/useWindowDimensions";
+import { useSettings } from "./states/settings/settings";
 import { useSidebarState } from "./states/sidebar/sidebar";
+import { useSnip } from "./states/snips/snips";
 import { useTheme } from "./states/theme/theme";
 
 function MainApp() {
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth <= 768);
-  const { setSidebarState } = useSidebarState();
-  const { refresh } = useGists();
-  useEffect(() => {
-    refresh();
-  }, [refresh]);
-
-  useEffect(() => {
-    setSidebarState(window.innerWidth <= 768);
-  }, [setSidebarState]);
-
   return (
-    <div className="h-full bg-[--background-primary] flex">
-      <Sidebar />
-
+    <div className="h-full w-full bg-[--bg-primary] flex">
+      <div>
+        <Sidebar />
+      </div>
       <div className="flex flex-col w-full">
         <Header />
-
         <Main />
       </div>
+      <Popup />
     </div>
-  );
-}
-
-function AppInner() {
-  const { status } = useAuth();
-  if (status === "validating" || status === "idle") return <Loading />;
-  if (status === "unauthenticated") return <LoginScreen />;
-  return (
-    <GistProvider>
-      <MainApp />
-    </GistProvider>
   );
 }
 
 export default function App() {
   const { loadTheme } = useTheme();
+  const { loadSettings, settings } = useSettings();
+  const { setSidebarState } = useSidebarState();
+  const { width } = useWindowDimensions();
+  const { loadSnips } = useSnip();
 
   useEffect(() => {
     loadTheme();
   }, [loadTheme]);
 
-  return (
-    <AuthProvider>
-      <AppInner />
-    </AuthProvider>
-  );
+  useEffect(() => {
+    loadSettings();
+  }, [loadSettings]);
+
+  useEffect(() => {
+    setSidebarState(width > 1000);
+  }, [setSidebarState, width]);
+
+  useEffect(() => {
+    loadSnips();
+  }, [loadSnips]);
+
+  return settings?.name ? <MainApp /> : <Form />;
 }
