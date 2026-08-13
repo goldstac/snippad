@@ -2,7 +2,7 @@ import { Theme } from "@shared/types/theme";
 
 export const defaultTheme: Theme = {
   name: "Carbon",
-  description: `Carbon theme for SnipBase`,
+  description: `Carbon theme for SnipPad`,
   author: "calebephrem",
   theme: {
     type: "dark",

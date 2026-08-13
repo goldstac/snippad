@@ -6,5 +6,5 @@
   },
   "javascript.suggest.completeJSDocs": true,
   "typescript.suggest.completeJSDocs": true,
-  "cSpell.words": ["snipbase"],
+  "cSpell.words": ["snippad"],
 }

@@ -3,7 +3,9 @@ import MonacoEditor from "./MonacoEditor";
 import Panel from "./Panel";
 
 export default function EditorArea() {
-  const { activeSnip } = useSnip();
+  const { activeSnip, snips } = useSnip();
+
+  if (!snips || snips.length === 0) return <></>;
 
   if (!activeSnip)
     return (

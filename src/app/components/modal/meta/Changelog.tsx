@@ -16,7 +16,7 @@ export default function ChangelogModal() {
       </div>
       <div className="flex items-center justify-between w-full">
         <div></div>
-        <a href="https://github.com/snipbase/snipbase/blob/main/CHANGELOG.md">
+        <a href="https://github.com/snippad/snippad/blob/main/CHANGELOG.md">
           <Button variant="primary">
             <span>View All</span>
           </Button>

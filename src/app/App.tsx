@@ -57,7 +57,7 @@ export default function App() {
       if (updated !== false) {
         openModal({
           type: "changelog",
-          title: updated === null ? "New Release!" : "SnipBase Updated!",
+          title: updated === null ? "New Release!" : "SnipPad Updated!",
         });
       }
     })();

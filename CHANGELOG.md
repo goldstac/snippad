@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to SnipBase will be documented in this file.
+All notable changes to SnipPad will be documented in this file.
 
 ## `v0.1.0` - 2026-08-13
 
@@ -16,10 +16,10 @@ All notable changes to SnipBase will be documented in this file.
 
 #### Customization & Config
 
-- Custom Theme Support (`~/.snipbase/themes.json`):
+- Custom Theme Support (`~/.snippad/themes.json`):
   - Client Themes: Customize UI theme colors.
   - Editor Themes: Custom Monaco Editor themes support.
-- Custom Settings (`~/.snipbase/settings.json`): Configurable options for application behavior and editor preferences.
+- Custom Settings (`~/.snippad/settings.json`): Configurable options for application behavior and editor preferences.
 
 #### System
 

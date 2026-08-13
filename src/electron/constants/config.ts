@@ -2,11 +2,11 @@ import { homedir } from "os";
 import path from "path";
 
 export const config = {
-  base: path.join(homedir(), ".snipbase"),
-  settings: path.join(homedir(), ".snipbase", "settings.json"),
-  theme: path.join(homedir(), ".snipbase", "theme.json"),
+  base: path.join(homedir(), ".snippad"),
+  settings: path.join(homedir(), ".snippad", "settings.json"),
+  theme: path.join(homedir(), ".snippad", "theme.json"),
   snips: {
-    base: path.join(homedir(), ".snipbase", "snips"),
+    base: path.join(homedir(), ".snippad", "snips"),
     metadata: "__snip_metadata",
   },
 };

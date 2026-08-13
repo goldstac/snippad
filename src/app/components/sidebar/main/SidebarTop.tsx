@@ -64,9 +64,9 @@ export default function SidebarTop() {
           src="./icon.svg"
           width="30"
           className="flex-shrink-0"
-          alt="SnipBase Logo"
+          alt="SnipPad Logo"
         />
-        {isSidebarOpen && <h1 className="text-xl leading-none">SnipBase</h1>}
+        {isSidebarOpen && <h1 className="text-xl leading-none">SnipPad</h1>}
       </div>
 
       <div className="w-full flex flex-col gap-2">

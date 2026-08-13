@@ -15,12 +15,12 @@ export default function AboutModal() {
     {
       icon: Global,
       label: "Website",
-      link: "https://snipbase.github.io",
+      link: "https://snippad.github.io",
     },
     {
       icon: Code,
       label: "Repo",
-      link: "https://github.com/snipbase/snipbase",
+      link: "https://github.com/snippad/snippad",
     },
     {
       icon: FileText,

@@ -73,7 +73,7 @@ function createWindow(): void {
     height: 700,
     minWidth: 800,
     minHeight: 500,
-    title: "SnipBase",
+    title: "SnipPad",
     autoHideMenuBar: true,
     show: false,
     webPreferences: {

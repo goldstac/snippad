@@ -1,10 +1,12 @@
 import { useEditor } from "@/states/editor/editor";
+import { useModal } from "@/states/modal/modal";
 import { useSnip } from "@/states/snips/snips";
 import SnipCard from "./SnipCard";
 
 export default function Sidebar() {
   const { filteredSnips, setActiveSnip } = useSnip();
   const { setContent, setActiveFile } = useEditor();
+  const { openModal } = useModal();
 
   return (
     <aside className="w-96 h-full border-r border-[--border-color] p-2 flex flex-col gap-3 overflow-y-auto flex-shrink-0">
@@ -41,7 +43,13 @@ export default function Sidebar() {
         <div className="h-full w-full flex flex-col gap-3 items-center justify-center">
           <h1 className="text-4xl">No snips yet!</h1>
           <span className="text-[--text-secondary]">
-            Create a snip to get started.
+            <span
+              className="text-[--accent-color] cursor-pointer"
+              onClick={() => openModal({ type: "newsnip", title: "New Snip" })}
+            >
+              Create a snip
+            </span>{" "}
+            to get started.
           </span>
         </div>
       )}

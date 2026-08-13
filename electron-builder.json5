@@ -1,9 +1,9 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   $schema: "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  appId: "io.github.snipbase",
+  appId: "io.github.snippad",
   asar: true,
-  productName: "SnipBase",
+  productName: "SnipPad",
   icon: "public/icon.svg",
   directories: {
     output: "release/${version}",

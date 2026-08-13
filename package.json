@@ -1,22 +1,22 @@
 {
-  "name": "SnipBase",
+  "name": "SnipPad",
   "description": "A fast, polished client for managing your code snippets like a pro",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "main": "dist-electron/main.js",
-  "homepage": "https://snipbase.github.io",
+  "homepage": "https://snippad.github.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/snipbase/snipbase"
+    "url": "https://github.com/snippad/snippad"
   },
   "bugs": {
-    "url": "https://github.com/snipbase/snipbase/issues"
+    "url": "https://github.com/snippad/snippad/issues"
   },
   "license": "GPL-3.0-only",
   "author": {
-    "name": "SnipBase",
-    "url": "https://github.com/snipbase"
+    "name": "snippad",
+    "url": "https://github.com/snippad"
   },
   "scripts": {
     "dev": "vite",
