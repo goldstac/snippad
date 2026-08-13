@@ -8,6 +8,7 @@ export type ModalType =
   | "deleteconfirm"
   | "editsnip"
   | "newsnip"
+  | "announcement"
   | null;
 
 export interface OpenModalType {

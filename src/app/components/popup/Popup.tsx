@@ -3,6 +3,7 @@ import { X } from "reicon-react";
 import SettingsModal from "../modal/app/Settings";
 import ThemesModal from "../modal/app/Themes";
 import AboutModal from "../modal/meta/About";
+import AnnouncementModal from "../modal/meta/Announcement";
 import ChangelogModal from "../modal/meta/Changelog";
 import DeleteSnipModal from "../modal/snips/DeleteSnip";
 import EditSnipModal from "../modal/snips/EditSnip";
@@ -27,6 +28,7 @@ export default function Popup() {
         </div>
         {type === "about" && <AboutModal />}
         {type === "changelog" && <ChangelogModal />}
+        {type === "announcement" && <AnnouncementModal />}
 
         {type === "themes" && <ThemesModal />}
         {type === "settings" && <SettingsModal />}

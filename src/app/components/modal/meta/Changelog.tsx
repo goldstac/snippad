@@ -12,7 +12,7 @@ function getLatestChangelog() {
 export default function ChangelogModal() {
   return (
     <div className="flex flex-col w-full gap-3">
-      <div className="popup-markdown max-w-[33rem] max-h-[33rem] overflow-y-auto flex flex-col gap-3 p-3">
+      <div className="popup-markdown max-w-[33rem] max-h-[33rem] overflow-y-auto flex flex-col gap-3 p-2">
         <Markdown>{getLatestChangelog()}</Markdown>
       </div>
       <div className="flex items-center justify-between w-full">

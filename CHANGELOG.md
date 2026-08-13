@@ -22,3 +22,4 @@
 #### System
 
 - Auto-Updates: Automated update checks to deliver the latest features and patches.
+- In-App Announcements: A dedicated space for news, updates, and community notes directly on startup.

@@ -4,6 +4,7 @@ import Main from "./components/main/Main";
 import Popup from "./components/popup/Popup";
 import { Sidebar } from "./components/sidebar/main/Sidebar";
 import { useWindowDimensions } from "./hooks/useWindowDimensions";
+import { checkAnnouncement } from "./lib/announcement";
 import { isUpdated } from "./lib/updates";
 import { useModal } from "./states/modal/modal";
 import { useSettings } from "./states/settings/settings";
@@ -37,6 +38,15 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
+      const announcement = await checkAnnouncement();
+      if (announcement) {
+        return openModal({
+          type: "announcement",
+          title: "Announcement",
+          data: { announcement },
+        });
+      }
+
       const updated = await isUpdated();
       if (updated !== false) {
         openModal({

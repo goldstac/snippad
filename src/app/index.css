@@ -100,6 +100,10 @@ select:focus {
   @apply text-[--text-secondary] text-[0.9rem] underline;
 }
 
+.popup-markdown a {
+  @apply text-[--accent-color] underline hover:text-[--accent-color-muted] transition-all;
+}
+
 .popup-markdown ul {
   @apply list-disc px-5 marker:text-[--accent-color-muted];
 }
@@ -107,10 +111,6 @@ select:focus {
 .popup-markdown ul li code {
   @apply p-[0.05rem] rounded-sm bg-[--bg-secondary];
   font-family: "Fira Code";
-}
-
-.popup-markdown ul li a {
-  @apply text-[--accent-color] underline hover:text-[--accent-color-muted] transition-all;
 }
 
 .popup-markdown table {
