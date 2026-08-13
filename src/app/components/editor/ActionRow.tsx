@@ -6,11 +6,11 @@ import { useSnip } from "@/states/snips/snips";
 import {
   Edit,
   Eye,
+  Floppy2,
   IconComponent,
   PlusCircle,
-  Save,
   Star,
-  Trash,
+  Trash3,
 } from "reicon-react";
 import { Button, ButtonVariant } from "../ui/Button";
 
@@ -39,7 +39,7 @@ export default function ActionRow() {
 
   const actionRow: ActionRowType[] = [
     {
-      icon: Save,
+      icon: Floppy2,
       label: "Save",
       variant: "primary",
       disabled: isSaveDisabled,
@@ -94,22 +94,16 @@ export default function ActionRow() {
   }
 
   actionRow.push({
-    icon: Trash,
+    icon: Trash3,
     label: "Delete",
     variant: "danger",
     onClick: () => openModal({ type: "deleteconfirm", title: "Delete Snip" }),
   });
 
-  const iconWeight =
-    settings?.client?.icons?.fill && settings?.client?.icons?.fill !== "auto"
-      ? "Filled"
-      : "Outline";
-
   return (
     <div className="w-full px-3 flex items-center justify-between h-11 bg-[--bg-primary] border-b border-[--border-color-subtle] gap-2">
       <div className="flex items-center gap-2 flex-shrink-0">
         {actionRow.map((act) => {
-          const Icon = act.icon;
           return (
             <Button
               key={act.label}
@@ -117,8 +111,8 @@ export default function ActionRow() {
               variant={act.variant}
               onClick={act.onClick}
               disabled={act.disabled}
+              icon={act.icon}
             >
-              <Icon size={16} weight={iconWeight} />
               {settings?.client?.actionRow?.showLabels && (
                 <span>{act.label}</span>
               )}

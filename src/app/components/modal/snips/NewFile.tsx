@@ -4,6 +4,7 @@ import { useEditor } from "@/states/editor/editor";
 import { useModal } from "@/states/modal/modal";
 import { useSnip } from "@/states/snips/snips";
 import { useState } from "react";
+import { PlusCircle } from "reicon-react";
 
 export default function NewFileModal() {
   const [value, setValue] = useState("");
@@ -84,7 +85,12 @@ export default function NewFileModal() {
       />
       <div className="flex items-center justify-between w-full">
         <div className="text-[--danger] text-sm">{error}</div>
-        <Button variant="primary" disabled={disabled} onClick={handleCreate}>
+        <Button
+          variant="primary"
+          disabled={disabled}
+          onClick={handleCreate}
+          icon={PlusCircle}
+        >
           Create File
         </Button>
       </div>

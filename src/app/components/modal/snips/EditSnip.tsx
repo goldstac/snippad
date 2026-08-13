@@ -5,6 +5,7 @@ import { useModal } from "@/states/modal/modal";
 import { useSnip } from "@/states/snips/snips";
 import { parseTags } from "@/utils/parseTags";
 import { useState } from "react";
+import { Floppy2 } from "reicon-react";
 
 export default function EditSnipModal() {
   const { activeSnip, snips, update } = useSnip();
@@ -89,6 +90,7 @@ export default function EditSnipModal() {
           variant="primary"
           disabled={isSaveDisabled}
           onClick={handleSave}
+          icon={Floppy2}
         >
           Save Changes
         </Button>

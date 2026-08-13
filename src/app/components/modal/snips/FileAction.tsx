@@ -4,6 +4,7 @@ import { useEditor } from "@/states/editor/editor";
 import { useModal } from "@/states/modal/modal";
 import { useSnip } from "@/states/snips/snips";
 import { useState } from "react";
+import { Floppy2, Trash3 } from "reicon-react";
 
 export default function FileActionModal() {
   const { snips, activeSnip, update } = useSnip();
@@ -110,7 +111,7 @@ export default function FileActionModal() {
       </div>
 
       <div className="flex items-center justify-between pt-2">
-        <Button variant="danger" onClick={handleDelete}>
+        <Button variant="danger" onClick={handleDelete} icon={Trash3}>
           Delete File
         </Button>
 
@@ -121,6 +122,7 @@ export default function FileActionModal() {
               !!error || !fileName.trim() || fileName.trim() === originalName
             }
             onClick={handleRename}
+            icon={Floppy2}
           >
             Save Changes
           </Button>

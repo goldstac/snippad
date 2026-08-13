@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import Markdown from "react-markdown";
+import { CircleArrowRightUp } from "reicon-react";
 import CHANGELOG from "../../../../../CHANGELOG.md?raw";
 
 function getLatestChangelog() {
@@ -17,7 +18,7 @@ export default function ChangelogModal() {
       <div className="flex items-center justify-between w-full">
         <div></div>
         <a href="https://github.com/snippad/snippad/blob/main/CHANGELOG.md">
-          <Button variant="primary">
+          <Button variant="primary" icon={CircleArrowRightUp}>
             <span>View All</span>
           </Button>
         </a>

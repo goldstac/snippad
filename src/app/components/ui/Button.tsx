@@ -1,3 +1,4 @@
+import { useSettings } from "@/states/settings/settings";
 import { type ButtonHTMLAttributes, type ReactNode } from "react";
 import { IconComponent } from "reicon-react";
 
@@ -7,6 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: "sm" | "md";
   icon?: IconComponent;
+  iconClassName?: string;
   children: ReactNode;
 }
 
@@ -16,8 +18,11 @@ export function Button({
   size = "md",
   children,
   className = "",
+  iconClassName,
   ...props
 }: ButtonProps) {
+  const { settings } = useSettings();
+
   const base =
     "inline-flex items-center justify-center gap-2 font-medium rounded-md transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-accent/40";
   const variants = {
@@ -41,7 +46,18 @@ export function Button({
       className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
-      {Icon && <Icon size={16} />}
+      {Icon && (
+        <Icon
+          size={16}
+          className={iconClassName}
+          weight={
+            settings?.client?.icons?.fill &&
+            settings?.client?.icons?.fill !== "auto"
+              ? "Filled"
+              : "Outline"
+          }
+        />
+      )}
       {children}
     </button>
   );

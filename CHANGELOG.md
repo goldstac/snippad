@@ -1,7 +1,5 @@
 # Change Log
 
-All notable changes to SnipPad will be documented in this file.
-
 ## `v0.1.0` - 2026-08-13
 
 ### Initial Release

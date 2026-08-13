@@ -44,7 +44,6 @@ export default function AboutModal() {
       <span className="text-[--accent-color]">v{pkg.version}</span>
       <div className="flex items-center gap-3 p-2">
         {buttons.map((btn) => {
-          const Icon = btn.icon;
           return (
             <a
               key={btn.label}
@@ -52,8 +51,7 @@ export default function AboutModal() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button size="sm" onClick={btn.onClick}>
-                <Icon size={16} />
+              <Button size="sm" onClick={btn.onClick} icon={btn.icon}>
                 <span>{btn.label}</span>
               </Button>
             </a>

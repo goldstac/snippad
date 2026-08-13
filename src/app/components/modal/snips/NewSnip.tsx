@@ -6,6 +6,7 @@ import { useModal } from "@/states/modal/modal";
 import { useSnip } from "@/states/snips/snips";
 import { parseTags } from "@/utils/parseTags";
 import { useState } from "react";
+import { PlusCircle } from "reicon-react";
 
 export default function NewSnipModal() {
   const { create, setActiveSnip } = useSnip();
@@ -94,6 +95,7 @@ export default function NewSnipModal() {
           variant="primary"
           disabled={isSaveDisabled}
           onClick={handleCreate}
+          icon={PlusCircle}
         >
           Create Snip
         </Button>

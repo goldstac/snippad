@@ -18,7 +18,7 @@ export const defaultSettings: Settings = {
       showBottomBorder: true,
       showExtension: true,
     },
-    breadcrumbs: {
+    breadcrumb: {
       enabled: true,
     },
   },

@@ -3,7 +3,7 @@ import { useSettings } from "@/states/settings/settings";
 import { useSidebarState } from "@/states/sidebar/sidebar";
 import { useSnip } from "@/states/snips/snips";
 import { useView } from "@/states/view/view";
-import { Tag } from "reicon-react";
+import { Tag, Tags } from "reicon-react";
 
 export default function TagsList() {
   const { getAllTags, setSnipFilter } = useSnip();
@@ -24,6 +24,8 @@ export default function TagsList() {
       <div className="w-full flex items-center justify-between">
         <h1 className="text-lg font-medium flex-shrink-0">Tags</h1>
         <Button
+          icon={Tags}
+          iconClassName="text-[--text-secondary]"
           onClick={() =>
             setActiveView({ id: "tags", label: "All Tags", tag: false })
           }
