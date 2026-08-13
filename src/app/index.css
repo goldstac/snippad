@@ -80,3 +80,48 @@ input:focus,
 select:focus {
   outline: none;
 }
+
+/* Parsed Markdown */
+
+.popup-markdown h1 {
+  @apply text-[--accent-color] text-[1.15rem] underline;
+}
+
+.popup-markdown h2 {
+  @apply text-lg text-[--text-secondary];
+}
+
+.popup-markdown h2 code {
+  @apply text-[--accent-color];
+  font-family: "Bricolage Grotesque";
+}
+
+.popup-markdown h3 {
+  @apply text-[--text-secondary] text-[0.9rem] underline;
+}
+
+.popup-markdown ul {
+  @apply list-disc px-5 marker:text-[--accent-color-muted];
+}
+
+.popup-markdown ul li code {
+  @apply p-[0.05rem] rounded-sm bg-[--bg-secondary];
+  font-family: "Fira Code";
+}
+
+.popup-markdown ul li a {
+  @apply text-[--accent-color] underline hover:text-[--accent-color-muted] transition-all;
+}
+
+.popup-markdown table {
+  @apply border-collapse;
+}
+
+.popup-markdown table tr {
+  @apply even:bg-white;
+}
+
+.popup-markdown table th,
+.popup-markdown table td {
+  @apply border border-[--accent-color-muted] p-1;
+}

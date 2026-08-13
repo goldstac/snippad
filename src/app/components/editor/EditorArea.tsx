@@ -8,7 +8,9 @@ export default function EditorArea() {
   if (!activeSnip)
     return (
       <div className="flex items-center justify-center w-full">
-        <h1 className="text-2xl">Select a snip to get started!</h1>
+        <h1 className="text-2xl whitespace-nowrap">
+          Select a snip to get started!
+        </h1>
       </div>
     );
 

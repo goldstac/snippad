@@ -1,15 +1,18 @@
 import { type ButtonHTMLAttributes, type ReactNode } from "react";
+import { IconComponent } from "reicon-react";
 
 export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: "sm" | "md";
+  icon?: IconComponent;
   children: ReactNode;
 }
 
 export function Button({
   variant = "secondary",
+  icon,
   size = "md",
   children,
   className = "",
@@ -31,11 +34,14 @@ export function Button({
     md: "text-sm px-3 py-1.5",
   };
 
+  const Icon = icon;
+
   return (
     <button
       className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
+      {Icon && <Icon size={16} />}
       {children}
     </button>
   );

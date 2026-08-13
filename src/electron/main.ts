@@ -85,9 +85,19 @@ function createWindow(): void {
     },
   });
 
+  // always open links in default browser
+  mainWindow.webContents.on("will-navigate", (event, url) => {
+    if (!url.startsWith("file://") && !url.startsWith("http://localhost")) {
+      event.preventDefault();
+      shell.openExternal(url);
+    }
+  });
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
-    shell.openExternal(url);
-    return { action: "deny" };
+    if (!url.startsWith("file://") && !url.startsWith("http://localhost")) {
+      shell.openExternal(url);
+      return { action: "deny" };
+    }
+    return { action: "allow" };
   });
 
   mainWindow.once("ready-to-show", () => {
