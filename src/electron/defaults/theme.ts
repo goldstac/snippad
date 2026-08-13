@@ -16,7 +16,7 @@ export const defaultTheme: Theme = {
       textPrimary: "#e8e8ec",
       textSecondary: "#a0a0a8",
       textMuted: "#6b6b73",
-      accentColor: "#e0a870",
+      accentColor: "#e0a56a",
       accentColorHover: "#e8b580",
       accentColorMuted: "rgba(224, 168, 112, 0.5)",
       danger: "#e57373",

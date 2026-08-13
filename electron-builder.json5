@@ -4,7 +4,7 @@
   appId: "io.github.snippad",
   asar: true,
   productName: "SnipPad",
-  icon: "public/icon.svg",
+  icon: "public/icon.png",
   directories: {
     output: "release/${version}",
   },

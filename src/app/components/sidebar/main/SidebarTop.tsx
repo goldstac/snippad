@@ -1,3 +1,4 @@
+import Logo from "@/components/ui/Logo";
 import { useSettings } from "@/states/settings/settings";
 import { useSidebarState } from "@/states/sidebar/sidebar";
 import { useSnip } from "@/states/snips/snips";
@@ -60,12 +61,7 @@ export default function SidebarTop() {
           ${isSidebarOpen ? "justify-start gap-3 px-3" : "justify-center px-0"}
         `}
       >
-        <img
-          src="./icon.png"
-          width="24"
-          className="flex-shrink-0"
-          alt="SnipPad Logo"
-        />
+        <Logo className="flex-shrink-0" />
         {isSidebarOpen && <h1 className="text-xl leading-none">SnipPad</h1>}
       </div>
 

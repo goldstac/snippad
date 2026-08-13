@@ -1,3 +1,4 @@
+import Logo from "@/components/ui/Logo";
 import { useModal } from "@/states/modal/modal";
 import pkg from "@pkg" with { type: "json" };
 import { Code, FileText, Global, IconComponent } from "reicon-react";
@@ -35,10 +36,7 @@ export default function AboutModal() {
 
   return (
     <div className="w-full items-center justify-center flex flex-col gap-2">
-      <img
-        src="./icon.png"
-        className="w-16 p-1 border border-[--border-color] rounded-md"
-      />
+      <Logo className="w-16 p-1 border border-[--border-color] rounded-md" />
       <h1 className="text-lg">{pkg.name}</h1>
       <span className="text-[--text-muted]">{pkg.description}</span>
       <span className="text-[--accent-color]">v{pkg.version}</span>
