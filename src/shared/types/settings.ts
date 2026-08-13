@@ -1,7 +1,6 @@
 import { editor } from "monaco-editor";
 
 export type Settings = Partial<{
-  name: string;
   client: {
     breadcrumb: {
       enabled: boolean;
