@@ -61,8 +61,8 @@ export default function SidebarTop() {
         `}
       >
         <img
-          src="./icon.svg"
-          width="30"
+          src="./icon.png"
+          width="24"
           className="flex-shrink-0"
           alt="SnipPad Logo"
         />

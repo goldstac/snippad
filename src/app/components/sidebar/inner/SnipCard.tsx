@@ -52,7 +52,7 @@ export default function SidebarItem({
       <span className="text-[--text-secondary] w-full flex">{description}</span>
       {tags && (
         <div className="flex flex-wrap items-center gap-3">
-          {tags.slice(0, 5).map((tag) => {
+          {tags.slice(0, 10).map((tag) => {
             const isActive = activeView.id === tag && activeView.tag;
             return (
               <button

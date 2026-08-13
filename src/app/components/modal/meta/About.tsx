@@ -36,7 +36,7 @@ export default function AboutModal() {
   return (
     <div className="w-full items-center justify-center flex flex-col gap-2">
       <img
-        src="./icon.svg"
+        src="./icon.png"
         className="w-16 p-1 border border-[--border-color] rounded-md"
       />
       <h1 className="text-lg">{pkg.name}</h1>
