@@ -36,10 +36,10 @@ export default function AboutModal() {
 
   return (
     <div className="w-full items-center justify-center flex flex-col gap-2">
-      <Logo className="w-16 p-1 border border-[--border-color] rounded-md" />
+      <Logo className="w-16 p-1 border border-(--border-color) rounded-md" />
       <h1 className="text-lg">{pkg.name}</h1>
-      <span className="text-[--text-muted]">{pkg.description}</span>
-      <span className="text-[--accent-color]">v{pkg.version}</span>
+      <span className="text-(--text-muted)">{pkg.description}</span>
+      <span className="text-(--accent-color)">v{pkg.version}</span>
       <div className="flex items-center gap-3 p-2">
         {buttons.map((btn) => {
           return (

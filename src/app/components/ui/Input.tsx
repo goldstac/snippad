@@ -9,7 +9,7 @@ export default function Input({
   return (
     <input
       className={
-        "bg-[--input-background] text-[--text-primary] border border-[--border-color] rounded-md text-lg p-1 " +
+        "bg-(--input-background) text-(--text-primary) border border-(--border-color) rounded-md text-lg p-1 " +
         className
       }
       placeholder={placeholder}

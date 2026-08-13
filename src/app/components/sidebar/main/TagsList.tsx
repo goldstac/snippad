@@ -19,13 +19,13 @@ export default function TagsList() {
 
   return (
     <div
-      className={`flex flex-col w-full h-full min-h-0 px-6 py-3 gap-3 ${settings?.client?.sidebar?.showDividers && "border-t border-[--border-color]"}`}
+      className={`flex flex-col w-full h-full min-h-0 px-6 py-3 gap-3 ${settings?.client?.sidebar?.showDividers && "border-t border-(--border-color)"}`}
     >
       <div className="w-full flex items-center justify-between">
-        <h1 className="text-lg font-medium flex-shrink-0">Tags</h1>
+        <h1 className="text-lg font-medium shrink-0">Tags</h1>
         <Button
           icon={Tags}
-          iconClassName="text-[--text-secondary]"
+          iconClassName="text-(--text-secondary)"
           onClick={() =>
             setActiveView({ id: "tags", label: "All Tags", tag: false })
           }
@@ -50,11 +50,11 @@ export default function TagsList() {
                   tag: true,
                 });
               }}
-              className="code flex gap-2 items-center text-[--text-secondary] hover:text-[--text-primary] transition-colors text-left py-1 cursor-pointer flex-shrink-0"
+              className="code flex gap-2 items-center text-(--text-secondary) hover:text-(--text-primary) transition-colors text-left py-1 cursor-pointer shrink-0"
             >
               <Tag
                 size={12}
-                className={`flex-shrink-0 ${isActive && "text-[--accent-color]"} transition-all`}
+                className={`shrink-0 ${isActive && "text-(--accent-color)"} transition-all`}
                 weight={
                   fillIcons === "auto"
                     ? isActive
@@ -66,7 +66,7 @@ export default function TagsList() {
                 }
               />
               <span
-                className={`transition-all ${isActive && "text-[--accent-color]"}`}
+                className={`transition-all ${isActive && "text-(--accent-color)"}`}
               >
                 {tag}
               </span>

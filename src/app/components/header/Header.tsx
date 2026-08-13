@@ -15,14 +15,14 @@ export default function Header() {
   return (
     <header
       className={`
-        flex items-center justify-between bg-[--bg-secondary] h-[3.75rem] p-2 border-b border-[--border-color] transition-all w-full flex-shrink-0
+        flex items-center justify-between bg-(--bg-secondary) h-15 p-2 border-b border-(--border-color) transition-all w-full shrink-0
       `}
     >
       <div className="flex items-center gap-3">
         <Button size="sm" onClick={() => toggleSidebarState()}>
           <Sidebar
             size={22}
-            className="text-[--text-secondary]"
+            className="text-(--text-secondary)"
             weight={
               fillIcons === "auto"
                 ? isSidebarOpen

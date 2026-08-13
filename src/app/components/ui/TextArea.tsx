@@ -9,7 +9,7 @@ export default function TextArea({
   return (
     <textarea
       className={
-        "bg-[--input-background] text-[--text-primary] border border-[--border-color] rounded-md text-lg p-1 " +
+        "bg-(--input-background) text-(--text-primary) border border-(--border-color) rounded-md text-lg p-1 " +
         className
       }
       placeholder={placeholder}

@@ -10,17 +10,17 @@ export default function AnnouncementModal() {
   if (!data?.announcement)
     return (
       <div className="flex flex-col items-center justify-center p-6 text-center">
-        <div className="mb-3 rounded-full bg-[--bg-secondary] p-3 text-[--text-secondary]">
+        <div className="mb-3 rounded-full bg-(--bg-secondary) p-3 text-(--text-secondary)">
           <Bell
             weight={
               settings?.client?.icons?.fill === true ? "Filled" : "Outline"
             }
           />
         </div>
-        <h3 className="text-sm font-medium text-[--text-primary]">
+        <h3 className="text-sm font-medium text-(--text-primary)">
           You're all caught up!
         </h3>
-        <p className="mt-1 text-xs text-[--text-secondary]">
+        <p className="mt-1 text-xs text-(--text-secondary)">
           There are no active announcements right now.
         </p>
       </div>
@@ -28,7 +28,7 @@ export default function AnnouncementModal() {
 
   return (
     <div className="flex flex-col w-full gap-3">
-      <div className="popup-markdown max-w-[33rem] max-h-[33rem] overflow-y-auto p-2">
+      <div className="popup-markdown max-w-132 max-h-132 overflow-y-auto p-2">
         <Markdown>{data.announcement}</Markdown>
       </div>
     </div>

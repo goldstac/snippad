@@ -11,7 +11,7 @@ export function Sidebar() {
   return (
     <aside
       className={`
-        flex flex-col items-center ${settings?.client?.sidebar?.showDividers ? "gap-3" : "gap-1"} h-full border-r border-[--border-color] transition-all bg-[--bg-secondary] flex-shrink-0
+        flex flex-col items-center ${settings?.client?.sidebar?.showDividers ? "gap-3" : "gap-1"} h-full border-r border-(--border-color) transition-all bg-(--bg-secondary) shrink-0
         ${isSidebarOpen ? "w-80 p-3" : "w-12 py-3 px-2"}
       `}
     >

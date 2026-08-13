@@ -101,8 +101,8 @@ export default function ActionRow() {
   });
 
   return (
-    <div className="w-full px-3 flex items-center justify-between h-11 bg-[--bg-primary] border-b border-[--border-color-subtle] gap-2">
-      <div className="flex items-center gap-2 flex-shrink-0">
+    <div className="w-full px-3 flex items-center justify-between h-11 bg-(--bg-primary) border-b border-(--border-color-subtle) gap-2">
+      <div className="flex items-center gap-2 shrink-0">
         {actionRow.map((act) => {
           return (
             <Button

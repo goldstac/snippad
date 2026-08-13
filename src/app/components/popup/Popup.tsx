@@ -19,7 +19,7 @@ export default function Popup() {
 
   return (
     <div className="fixed z-50 h-screen w-screen backdrop-blur-[2px] rounded-lg flex items-center justify-center">
-      <div className="p-6 gap-4 flex flex-col bg-[--overlay-color] min-w-96 max-w-[85%] max-h-[85%] rounded-md border border-[--border-color] shadow-2xl shadow-[--shadow]">
+      <div className="p-6 gap-4 flex flex-col bg-(--overlay-color) min-w-96 max-w-[85%] max-h-[85%] rounded-md border border-(--border-color) shadow-2xl shadow-(--shadow)">
         <div className="w-full flex items-center justify-between">
           <h1 className="text-xl">{title}</h1>
           <Button size="sm" onClick={() => closeModal()}>

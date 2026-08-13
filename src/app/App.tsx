@@ -58,7 +58,7 @@ export default function App() {
   }, [openModal]);
 
   return (
-    <div className="h-full w-full bg-[--bg-primary] flex">
+    <div className="h-full w-full bg-(--bg-primary) flex">
       <div>
         <Sidebar />
       </div>

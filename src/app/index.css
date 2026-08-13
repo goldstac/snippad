@@ -1,116 +1,110 @@
-/*@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");*/
-/*@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fira+Code:wght@300..700&display=swap");*/
-@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fira+Code:wght@300..700&family=Geist:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fira+Code:wght@300..700&family=Geist:ital,wght@0,100..900;1,100..900&display=swap")
+layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  font-family:
-    "Geist",
-    "Inter",
-    system-ui,
-    -apple-system,
+@theme {
+  --font-sans: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif:
+    "Bricolage Grotesque", "Geist", "Inter", system-ui, -apple-system,
     sans-serif;
-  font-size: 13px;
-  color: var(--text-primary);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --font-mono: "Fira Code", monospace;
 }
 
-.bricolage,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family:
-    "Bricolage Grotesque",
-    "Geist",
-    "Inter",
-    system-ui,
-    -apple-system,
-    sans-serif;
-}
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-.code {
-  font-family: "Fira Code", monospace;
-}
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
 
-::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
+  body {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
-}
+  .bricolage,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: 3px;
-}
+  .code {
+    font-family: var(--font-mono);
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
-}
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
 
-::selection {
-  background: var(--accent-color-muted);
-}
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
 
-button:focus,
-input:focus,
-select:focus {
-  outline: none;
-}
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 3px;
+  }
 
-/* Parsed Markdown */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+
+  ::selection {
+    background: var(--accent-color-muted);
+  }
+
+  button:focus,
+  input:focus,
+  select:focus {
+    outline: none;
+  }
+}
 
 .popup-markdown h1 {
-  @apply text-[--accent-color] text-[1.15rem] underline;
+  @apply [color:var(--accent-color)] text-[1.15rem] underline;
 }
 
 .popup-markdown h2 {
-  @apply text-lg text-[--text-secondary];
+  @apply [color:var(--text-secondary)] text-lg;
 }
 
 .popup-markdown h2 code {
-  @apply text-[--accent-color];
-  font-family: "Bricolage Grotesque";
+  @apply [color:var(--accent-color)];
+  font-family: var(--font-serif);
 }
 
 .popup-markdown h3 {
-  @apply text-[--text-secondary] text-[0.9rem] underline;
+  @apply [color:var(--text-secondary)] text-[0.9rem] underline;
 }
 
 .popup-markdown a {
-  @apply text-[--accent-color] underline hover:text-[--accent-color-muted] transition-all;
+  @apply [color:var(--accent-color)] underline hover:[color:var(--accent-color-muted)] transition-all;
 }
 
 .popup-markdown ul {
-  @apply list-disc px-5 marker:text-[--accent-color-muted];
+  @apply list-disc px-5 marker:[color:var(--accent-color-muted)];
 }
 
 .popup-markdown ul li code {
-  @apply p-[0.05rem] rounded-sm bg-[--bg-secondary];
-  font-family: "Fira Code";
+  @apply p-[0.05rem] rounded-sm bg-[color:var(--bg-secondary)];
+  font-family: var(--font-mono);
 }
 
 .popup-markdown table {
@@ -123,5 +117,5 @@ select:focus {
 
 .popup-markdown table th,
 .popup-markdown table td {
-  @apply border border-[--accent-color-muted] p-1;
+  @apply border border-[color:var(--accent-color-muted)] p-1;
 }

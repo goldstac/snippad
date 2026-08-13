@@ -107,7 +107,7 @@ export default function FileActionModal() {
           placeholder="Rename file..."
           autoFocus
         />
-        {error && <span className="text-xs text-[--danger]">{error}</span>}
+        {error && <span className="text-xs text-(--danger)">{error}</span>}
       </div>
 
       <div className="flex items-center justify-between pt-2">

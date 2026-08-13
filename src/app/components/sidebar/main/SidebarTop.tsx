@@ -57,11 +57,11 @@ export default function SidebarTop() {
     <div className="flex flex-col items-center justify-start gap-2 w-full">
       <div
         className={`
-          flex h-12 w-full items-center ${settings?.client?.sidebar?.showDividers && "border-b border-[--border-color]"} transition-all
+          flex h-12 w-full items-center ${settings?.client?.sidebar?.showDividers && "border-b border-(--border-color)"} transition-all
           ${isSidebarOpen ? "justify-start gap-3 px-3" : "justify-center px-0"}
         `}
       >
-        <Logo className="flex-shrink-0" />
+        <Logo className="shrink-0" />
         {isSidebarOpen && <h1 className="text-xl leading-none">SnipPad</h1>}
       </div>
 

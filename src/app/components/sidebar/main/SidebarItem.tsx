@@ -27,8 +27,8 @@ export default function SidebarItem({
       onClick={onClick}
       className={`
         flex h-12 w-full items-center justify-between rounded-md transition-all
-        ${isSidebarOpen ? "px-4" : "px-2 justify-center"} ${isSidebarOpen && "hover:bg-[--bg-tertiary]"}
-        ${active && isSidebarOpen ? "bg-[--bg-tertiary]" : ""}
+        ${isSidebarOpen ? "px-4" : "px-2 justify-center"} ${isSidebarOpen && "hover:bg-(--bg-tertiary)"}
+        ${active && isSidebarOpen ? "bg-(--bg-tertiary)" : ""}
       `}
     >
       <div className="flex items-center justify-center gap-3">
@@ -43,7 +43,7 @@ export default function SidebarItem({
                 ? "Filled"
                 : "Outline"
           }
-          className={`${active ? "text-[--accent-color]" : "text-[--text-muted]"} transition-all ${!isSidebarOpen && !active && "hover:text-[--text-secondary]"}`}
+          className={`${active ? "text-(--accent-color)" : "text-(--text-muted)"} transition-all ${!isSidebarOpen && !active && "hover:text-(--text-secondary)"}`}
         />
         {isSidebarOpen && (
           <span className="bricolage whitespace-nowrap text-lg leading-none">
@@ -52,7 +52,7 @@ export default function SidebarItem({
         )}
       </div>
       {isSidebarOpen && settings?.client?.sidebar?.showNumbers && (
-        <span className="text-[--text-muted]">{number}</span>
+        <span className="text-(--text-muted)">{number}</span>
       )}
     </button>
   );

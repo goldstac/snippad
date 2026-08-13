@@ -36,7 +36,7 @@ export default function SidebarBottom() {
 
   return (
     <div
-      className={`flex flex-col items-center gap-2 w-full ${settings?.client?.sidebar?.showDividers && "border-t border-[--border-color]"}`}
+      className={`flex flex-col items-center gap-2 w-full ${settings?.client?.sidebar?.showDividers && "border-t border-(--border-color)"}`}
     >
       {sidebarItems.map((item) => (
         <SidebarItem

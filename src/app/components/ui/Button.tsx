@@ -27,12 +27,12 @@ export function Button({
     "inline-flex items-center justify-center gap-2 font-medium rounded-md transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-accent/40";
   const variants = {
     primary:
-      "bg-[--accent-color] text-[--bg-primary] hover:bg-[--accent-color-hover]",
+      "bg-(--accent-color) text-(--bg-primary) hover:bg-(--accent-color-hover)",
     secondary:
-      "bg-[--bg-tertiary] text-[--text-primary] hover:bg-[--border-color] border border-[--border-color-subtle]",
+      "bg-(--bg-tertiary) text-(--text-primary) hover:bg-(--border-color) border border-(--border-color-subtle)",
     ghost:
-      "text-[--text-secondary] hover:text-[--text-primary] hover:bg-[--bg-tertiary]",
-    danger: "bg-[--danger] text-white hover:bg-[--danger-hover]",
+      "text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-tertiary)",
+    danger: "bg-(--danger) text-white hover:bg-(--danger-hover)",
   };
   const sizes = {
     sm: "text-xs px-2 py-1",

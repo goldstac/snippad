@@ -90,7 +90,7 @@ export default function NewSnipModal() {
         />
       </div>
 
-      <div className="flex items-center justify-end w-full pt-2 border-t border-[--border-color-subtle]">
+      <div className="flex items-center justify-end w-full pt-2 border-t border-(--border-color-subtle)">
         <Button
           variant="primary"
           disabled={isSaveDisabled}

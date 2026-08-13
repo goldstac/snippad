@@ -28,11 +28,11 @@ export default function Tabs() {
               setActiveFile(file.name);
               setContent(file.content);
             }}
-            className={`flex items-center p-3 bg-[--bg-secondary] gap-2 border border-[--border-color] ${settings?.client?.tabs?.showBottomBorder && activeFile === file.name && "border-b border-b-[--accent-color]"} ${!(activeFile === file.name) && "opacity-65"} hover:cursor-pointer`}
+            className={`flex items-center p-3 bg-(--bg-secondary) gap-2 border border-(--border-color) ${settings?.client?.tabs?.showBottomBorder && activeFile === file.name && "border-b border-b-(--accent-color)"} ${!(activeFile === file.name) && "opacity-65"} hover:cursor-pointer`}
           >
             <span className="code">{file.name}</span>
             {settings?.client?.tabs?.showExtension && ext && (
-              <span className="code text-[--text-muted]">{ext}</span>
+              <span className="code text-(--text-muted)">{ext}</span>
             )}
             <button
               onClick={() =>
@@ -45,7 +45,7 @@ export default function Tabs() {
                 })
               }
             >
-              <More className="rotate-90 text-[--text-secondary]" size={14} />
+              <More className="rotate-90 text-(--text-secondary)" size={14} />
             </button>
           </div>
         );

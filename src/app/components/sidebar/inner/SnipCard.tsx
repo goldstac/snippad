@@ -23,7 +23,7 @@ export default function SidebarItem({
   return (
     <div
       onClick={onClick}
-      className={`w-full p-4 flex flex-col hover:bg-[--bg-secondary] ${isActive && "bg-[--bg-secondary]"} rounded-md transition-all gap-3 hover:cursor-pointer`}
+      className={`w-full p-4 flex flex-col hover:bg-(--bg-secondary) ${isActive && "bg-(--bg-secondary)"} rounded-md transition-all gap-3 hover:cursor-pointer`}
     >
       <div className="flex items-center justify-between">
         {title && <h1 className="text-[1rem]">{title}</h1>}
@@ -34,22 +34,22 @@ export default function SidebarItem({
               weight={starred ? "Filled" : "Outline"}
               className={
                 starred
-                  ? "text-[--accent-color]"
-                  : "text-[--accent-color-muted]"
+                  ? "text-(--accent-color)"
+                  : "text-(--accent-color-muted)"
               }
             />
           </button>
 
           <span>
             {updatedAt && (
-              <span className="text-[--text-muted]">
+              <span className="text-(--text-muted)">
                 {new Date(updatedAt).toLocaleDateString()}
               </span>
             )}
           </span>
         </div>
       </div>
-      <span className="text-[--text-secondary] w-full flex">{description}</span>
+      <span className="text-(--text-secondary) w-full flex">{description}</span>
       {tags && (
         <div className="flex flex-wrap items-center gap-3">
           {tags.slice(0, 10).map((tag) => {
@@ -65,10 +65,10 @@ export default function SidebarItem({
                     tag: true,
                   });
                 }}
-                className="code text-xs text-[--text-secondary] hover:text-[--accent-color] hover:cursor-pointer transition-all flex items-center gap-1"
+                className="code text-xs text-(--text-secondary) hover:text-(--accent-color) hover:cursor-pointer transition-all flex items-center gap-1"
               >
                 <Tag
-                  className={`transition-all ${isActive && "text-[--accent-color]"}`}
+                  className={`transition-all ${isActive && "text-(--accent-color)"}`}
                   size={10}
                   weight={
                     fillIcons === "auto"
@@ -81,7 +81,7 @@ export default function SidebarItem({
                   }
                 />
                 <span
-                  className={`transition-all ${isActive && "text-[--accent-color]"}`}
+                  className={`transition-all ${isActive && "text-(--accent-color)"}`}
                 >
                   {tag}
                 </span>

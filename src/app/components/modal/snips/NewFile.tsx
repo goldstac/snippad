@@ -84,7 +84,7 @@ export default function NewFileModal() {
         autoFocus
       />
       <div className="flex items-center justify-between w-full">
-        <div className="text-[--danger] text-sm">{error}</div>
+        <div className="text-(--danger) text-sm">{error}</div>
         <Button
           variant="primary"
           disabled={disabled}

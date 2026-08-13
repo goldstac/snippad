@@ -9,7 +9,7 @@ export default function Sidebar() {
   const { openModal } = useModal();
 
   return (
-    <aside className="w-96 h-full border-r border-[--border-color] p-2 flex flex-col gap-3 overflow-y-auto flex-shrink-0">
+    <aside className="w-96 h-full border-r border-(--border-color) p-2 flex flex-col gap-3 overflow-y-auto shrink-0">
       {filteredSnips && filteredSnips.length > 0 ? (
         filteredSnips.map((snip) => {
           const {
@@ -42,9 +42,9 @@ export default function Sidebar() {
       ) : (
         <div className="h-full w-full flex flex-col gap-3 items-center justify-center">
           <h1 className="text-4xl">No snips yet!</h1>
-          <span className="text-[--text-secondary]">
+          <span className="text-(--text-secondary)">
             <span
-              className="text-[--accent-color] cursor-pointer"
+              className="text-(--accent-color) cursor-pointer"
               onClick={() => openModal({ type: "newsnip", title: "New Snip" })}
             >
               Create a snip
