@@ -11,14 +11,22 @@ export type ModalType =
   | "announcement"
   | null;
 
-export interface OpenModalType {
+export type ModalHistoryStep = {
   type: NonNullable<ModalType>;
   title: string;
   data?: Record<string, string> | null;
-}
+};
 
-export interface ModalState extends Omit<OpenModalType, "type"> {
+export type OpenModalType = ModalHistoryStep & {
+  path?: ModalHistoryStep;
+};
+
+export type ModalState = {
   type: ModalType;
-  openModal: ({ type, title }: OpenModalType) => void;
+  title: string;
+  data?: Record<string, string> | null;
+  path: ModalHistoryStep[];
+  openModal: (args: OpenModalType) => void;
   closeModal: () => void;
-}
+  setPath: (path: ModalHistoryStep[]) => void;
+};

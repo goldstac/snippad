@@ -19,7 +19,7 @@ export const defaultTheme: Theme = {
       accentColor: "#e0a56a",
       accentColorHover: "#e8b580",
       accentColorMuted: "rgba(224, 168, 112, 0.5)",
-      danger: "#e57373",
+      danger: "#d06060",
       dangerHover: "#f08585",
       success: "#7ec699",
       warning: "#e8c878",
