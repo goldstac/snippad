@@ -27,7 +27,7 @@ export default function AnnouncementModal() {
     );
 
   return (
-    <div className="flex flex-col w-full gap-3">
+    <div className="flex flex-col w-full gap-3 overflow-hidden">
       <div className="popup-markdown max-w-132 max-h-132 overflow-y-auto p-2">
         <Markdown>{data.announcement}</Markdown>
       </div>

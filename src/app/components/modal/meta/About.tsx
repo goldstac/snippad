@@ -30,6 +30,10 @@ export default function AboutModal() {
         openModal({
           type: "changelog",
           title: "Changelog",
+          path: {
+            title: "About",
+            type: "about",
+          },
         }),
     },
   ];
