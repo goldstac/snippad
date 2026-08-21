@@ -6,26 +6,35 @@
 
 A fast, polished desktop client for managing your code snippets like a pro.
 
-> **Status: Beta** — SnipPad is still in active development; you may encounter bugs or breaking changes.
+> [!NOTE]
+> SnipPad is still in active development; you may encounter bugs or breaking changes.
 
 </div>
 
 ## Features
 
-- **Snippet & Tag Management** — Create unlimited snippets and tags with filtered listing support.
-- **Editor Workspace** — Built-in Monaco Editor for a first-class code editing experience.
-- **Interactive Panel** — Action row for saving, editing, starring, and deleting snippets, plus tabbed navigation between open snippet files.
-- **Custom Themes** — Client UI themes and Monaco editor themes via `~/.snippad/themes.json`.
-- **Custom Settings** — Configure application behavior and editor preferences via `~/.snippad/settings.json`.
-- **Auto-Updates** — Automated update checks to keep you on the latest features and patches.
-- **In-App Announcements** — News, updates, and community notes on startup.
+- **Snippet & Tag Management**: Create unlimited snippets and tags with filtered listing support.
+- **Editor Workspace**: Built-in Monaco Editor for a first-class code editing experience.
+- **Interactive Panel**: Action row for saving, editing, starring, and deleting snippets, plus tabbed navigation between open snippet files.
+- **Custom Themes**: Client UI themes and Monaco editor themes via `~/.snippad/themes.json`.
+- **Custom Settings**: Configure application behavior and editor preferences via `~/.snippad/settings.json`.
+- **Auto-Updates**: Automated update checks to keep you on the latest features and patches.
+- **In-App Announcements**: News, updates, and community notes on startup.
 
 ## Tech Stack
 
-- [Electron](https://www.electronjs.org/) + [Vite](https://vitejs.dev/)
-- [React](https://react.dev/) 19 + [Zustand](https://zustand-demo.pmnd.rs/) state management
-- [Monaco Editor](https://microsoft.github.io/monaco-editor/)
-- [Tailwind CSS](https://tailwindcss.com/) v4
+| Library          | Purpose                          |
+| :--------------- | :------------------------------- |
+| React            | UI Component Library             |
+| Electron         | Cross-platform Desktop Framework |
+| Vite             | Next-gen Frontend Tooling        |
+| TypeScript       | Static Type Checking             |
+| Tailwind CSS     | Utility-first CSS Framework      |
+| Monaco Editor    | In-app Code Editor Core          |
+| Zustand          | Minimal React State Management   |
+| Electron Builder | Desktop App Installer & Bundler  |
+| Electron Store   | Persistent App Data & Settings   |
+| React Markdown   | Markdown Renderer                |
 
 ## Getting Started
 
@@ -36,35 +45,15 @@ A fast, polished desktop client for managing your code snippets like a pro.
 ### Development
 
 ```bash
-bun install      # install dependencies
-bun run dev      # start the Vite dev server
-bun run dev:electron  # run the Electron app
+bun install
+bun run dev
 ```
 
 ### Build
 
 ```bash
-bun run build    # builds the renderer and packages the app with electron-builder
+bun run build
 ```
-
-## Scripts
-
-| Script                 | Description                                    |
-| ---------------------- | ---------------------------------------------- |
-| `bun run dev`          | Start the Vite dev server                      |
-| `bun run dev:electron` | Run the Electron app                           |
-| `bun run build`        | Build the renderer and package the desktop app |
-| `bun run lint`         | Run ESLint                                     |
-| `bun run typecheck`    | Run TypeScript type checking                   |
-| `bun run format`       | Format the codebase with Prettier              |
-| `bun run preview`      | Preview the built renderer                     |
-
-## Configuration
-
-SnipPad stores user configuration in `~/.snippad/`:
-
-- `themes.json` — custom client themes and Monaco editor themes
-- `settings.json` — application behavior and editor preferences
 
 ## License
 
