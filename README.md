@@ -49,15 +49,15 @@ bun run build    # builds the renderer and packages the app with electron-builde
 
 ## Scripts
 
-| Script                | Description                                       |
-| --------------------- | ------------------------------------------------- |
-| `bun run dev`         | Start the Vite dev server                         |
-| `bun run dev:electron`| Run the Electron app                              |
-| `bun run build`       | Build the renderer and package the desktop app    |
-| `bun run lint`        | Run ESLint                                        |
-| `bun run typecheck`   | Run TypeScript type checking                      |
-| `bun run format`      | Format the codebase with Prettier                 |
-| `bun run preview`     | Preview the built renderer                        |
+| Script                 | Description                                    |
+| ---------------------- | ---------------------------------------------- |
+| `bun run dev`          | Start the Vite dev server                      |
+| `bun run dev:electron` | Run the Electron app                           |
+| `bun run build`        | Build the renderer and package the desktop app |
+| `bun run lint`         | Run ESLint                                     |
+| `bun run typecheck`    | Run TypeScript type checking                   |
+| `bun run format`       | Format the codebase with Prettier              |
+| `bun run preview`      | Preview the built renderer                     |
 
 ## Configuration
 
