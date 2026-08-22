@@ -8,6 +8,9 @@ A fast, polished desktop client for managing your code snippets like a pro.
 
 </div>
 
+> [!NOTE]
+> SnipPad is still in active development; you may encounter bugs or breaking changes.
+
 ## Features
 
 - **Snippet & Tag Management**: Create unlimited snippets and tags with filtered listing support.
