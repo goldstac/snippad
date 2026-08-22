@@ -6,9 +6,6 @@
 
 A fast, polished desktop client for managing your code snippets like a pro.
 
-> [!NOTE]
-> SnipPad is still in active development; you may encounter bugs or breaking changes.
-
 </div>
 
 ## Features
